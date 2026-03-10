@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delicate — An Interactive World</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="logo" href="#" onclick="showSection('home');return false;">delicate</a>
+    <ul class="nav-links">
+      <li><a href="#" data-section="home">Home</a></li>
+      <li><a href="#" data-section="characters">Characters</a></li>
+      <li><a href="#" data-section="relationships">Moments</a></li>
+      <li><a href="#" data-section="timeline">Timeline</a></li>
+      <li><a href="#" data-section="social">Social</a></li>
+    </ul>
+  </nav>
+
+  <!-- HOME -->
+  <section id="section-home" class="section">
+
+    <!-- Duality Hero -->
+    <div class="duality-hero">
+
+      <div class="duality-side solar-side">
+        <div class="bg-images"></div>
+        <div class="overlay"></div>
+        <div class="label">
+          <h2>Solar Lee</h2>
+          <p>The girl staring back at her when the mask comes off.</p>
+        </div>
+      </div>
+
+      <div class="duality-divider"></div>
+
+      <div class="duality-side soomi-side">
+        <div class="bg-images"></div>
+        <div class="overlay"></div>
+        <div class="label">
+          <h2>Kim Soomi</h2>
+          <p>Korea's number one solo artist. Perfect. Beloved. Untouchable.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Home intro -->
+    <div class="home-intro">
+      <h1>The world of Solar Lee — idol, exile, lover, ghost of herself.</h1>
+      <div class="home-nav-grid">
+        <button class="home-nav-btn" data-section="characters">
+          <span class="btn-emoji">👥</span>
+          <div class="btn-label">Characters</div>
+          <div class="btn-sub">BTS · iKON · The Lees · The Gang · New York</div>
+        </button>
+        <button class="home-nav-btn" data-section="relationships">
+          <span class="btn-emoji">🖼</span>
+          <div class="btn-label">Moments</div>
+          <div class="btn-sub">Solar & Jungkook · Solar & Sunwoo · The family</div>
+        </button>
+        <button class="home-nav-btn" data-section="timeline">
+          <span class="btn-emoji">⏱</span>
+          <div class="btn-label">Timeline</div>
+          <div class="btn-sub">2005 to 2022 · Recherche through Peace</div>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SOCIAL -->
+  <section id="section-social" class="section">
+    <div class="social-app">
+
+      <!-- SIDEBAR -->
+      <aside class="social-sidebar">
+        <div class="social-sidebar-header">Delicagram</div>
+
+        <div class="s-item" onclick="loadSocialProfile('soomi')">
+          <img class="s-avatar" src="images/solars-instagram/soomipfp.jpg" onerror="this.style.background='#555'">
+          <span>kimsoomi_official</span>
+        </div>
+
+        <div class="s-item" onclick="loadSocialProfile('solar')">
+          <img class="s-avatar" src="images/solars-instagram/solarpfp.jpg" onerror="this.style.background='#555'">
+          <span>sollee__</span>
+        </div>
+
+        <div class="s-item" onclick="loadSocialProfile('jinhwan')">
+          <img class="s-avatar" src="images/delicate-gram/jinhwanpfp.jpg" onerror="this.style.background='#555'">
+          <span>jinan_94</span>
+        </div>
+
+        <div class="s-item" onclick="loadSocialProfile('jungkook')">
+          <img class="s-avatar" src="images/delicate-gram/jungkookpfp.jpg" onerror="this.style.background='#555'">
+          <span>jk_95</span>
+        </div>
+
+        <div class="s-item" onclick="loadSocialProfile('jinhwan_priv')">
+  <img class="s-avatar" src="images/delicate-gram/jinhwanpfp.jpg" onerror="this.style.background='#555'">
+  <span>jinan__ 🔒</span>
+</div>
+
+<div class="s-item" onclick="loadSocialProfile('jungkook_priv')">
+  <img class="s-avatar" src="images/delicate-gram/jungkookpfp.jpg" onerror="this.style.background='#555'">
+  <span>jk__real 🔒</span>
+</div>
+
+<!-- Jimin -->
+<div class="s-item" onclick="loadSocialProfile('jimin')">
+  <img class="s-avatar" src="images/delicate-gram/jiminpfp.jpg" onerror="this.style.background='#555'">
+  <span>j.min_bts</span>
+</div>
+<div class="s-item" onclick="loadSocialProfile('jimin_priv')">
+  <img class="s-avatar" src="images/delicate-gram/jiminpfp.jpg" onerror="this.style.background='#555'">
+  <span>j.min__ 🔒</span>
+</div>
+
+<!-- Junhoe -->
+<div class="s-item" onclick="loadSocialProfile('junhoe')">
+  <img class="s-avatar" src="images/delicate-gram/junepfp.jpg" onerror="this.style.background='#555'">
+  <span>iKON_june</span>
+</div>
+<div class="s-item" onclick="loadSocialProfile('junhoe_priv')">
+  <img class="s-avatar" src="images/delicate-gram/junepfp.jpg" onerror="this.style.background='#555'">
+  <span>june__ 🔒</span>
+</div>
+
+<!-- Lee siblings -->
+<div class="s-item" onclick="loadSocialProfile('jaehyun_lee')">
+  <img class="s-avatar" src="images/delicate-gram/jaepfp.jpg" onerror="this.style.background='#555'">
+  <span>jaehyunlee__</span>
+</div>
+<div class="s-item" onclick="loadSocialProfile('juyeon_lee')">
+  <img class="s-avatar" src="images/delicate-gram/juyeonpfp.jpg" onerror="this.style.background='#555'">
+  <span>juyeonlee__</span>
+</div>
+
+        <div class="s-item" onclick="loadSocialProfile('chanhee')">
+          <img class="s-avatar" src="images/delicate-gram/chanheepfp.jpg" onerror="this.style.background='#555'">
+          <span>chanhee</span>
+        </div>
+
+        <div class="s-item" onclick="loadSocialProfile('sunwoo')">
+          <img class="s-avatar" src="" onerror="this.style.background='#222'">
+          <span>ksw__</span>
+        </div>
+
+        <div class="s-item" onclick="loadSocialProfile('chaerin')">
+          <img class="s-avatar" src="images/delicate-gram/chaerinselfie.jpg" onerror="this.style.background='#555'">
+          <span>chaerin_lee</span>
+        </div>
+
+        <div class="s-item" onclick="loadSocialProfile('eric')">
+          <img class="s-avatar" src="images/delicate-gram/ericpfp.jpg" onerror="this.style.background='#555'">
+          <span>eric_sim</span>
+        </div>
+
+        <div class="s-item" onclick="loadSocialProfile('hyunjoon')">
+          <img class="s-avatar" src="images/delicate-gram/hyunjoonpfp.jpg" onerror="this.style.background='#555'">
+          <span>hyunjoon_k</span>
+        </div>
+
+      </aside>
+
+      <!-- FEED -->
+      <main class="social-feed" id="social-feed"></main>
+
+      <!-- POST MODAL -->
+      <div class="social-modal-bg" id="socialModalBg">
+        <span class="social-modal-close" id="socialModalClose">✕</span>
+        <div class="social-modal" id="socialModal">
+          <div class="social-modal-img"><img id="socialModalImg" src="" alt=""/></div>
+          <div class="social-modal-right">
+            <div class="social-modal-user">
+              <img id="socialModalPfp" src="" onerror="this.style.background='#333'"/>
+              <span id="socialModalUsername"></span>
+            </div>
+            <div class="social-modal-comments" id="socialModalComments"></div>
+            <div class="social-modal-bottom">
+              <div class="social-modal-likes" id="socialModalLikes"></div>
+              <div class="social-modal-date" id="socialModalDate"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHARACTERS -->
+  <section id="section-characters" class="section">
+    <div class="section-header">
+      <h2>Characters</h2>
+      <p>Click any bubble to open their full profile.</p>
+    </div>
+    <div class="inner"></div>
+  </section>
+
+  <!-- RELATIONSHIPS / MOMENTS -->
+  <section id="section-relationships" class="section">
+    <div class="section-header">
+      <h2>Moments</h2>
+      <p>The relationships that defined her.</p>
+    </div>
+    <div class="inner"></div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section id="section-timeline" class="section">
+    <div class="section-header">
+      <h2>Timeline</h2>
+      <p>2005 to 2022. Click any event to expand it.</p>
+    </div>
+    <div class="inner"></div>
+  </section>
+
+  <!-- CHARACTER / RELATIONSHIP MODAL -->
+  <div id="modal-overlay">
+    <div class="modal"></div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox">
+    <button id="lightbox-close">✕</button>
+    <button id="lightbox-prev">‹</button>
+    <img id="lightbox-img" src="" alt="">
+    <button id="lightbox-next">›</button>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="data.js"></script>
+  <script>
+    const TIMELINE_DATA = [
+      { id:"r05a", year:2005, era:"recherche", identity:"solar", mood:"origin", title:"First Meeting", ref:null,
+        desc:"Solar and Sunwoo are both ten. Their parents sign a business deal, and Sunwoo's family begins coming over for weekly dinners. He is a weird, stand-offish boy who is oddly good at math. Solar is determined to befriend him whether he wants it or not." },
+      { id:"r06a", year:2006, era:"recherche", identity:"solar", mood:"painful", title:"Changmin's Father", ref:null,
+        desc:"Changmin's father — VP of the Lee company — is murdered. The business deal collapses. Sunwoo's family stops coming to dinners. Solar has grown a crush on him and assumes she will never see him again. Then Jaehyun tells her Sunwoo has transferred to their school." },
+      { id:"r06b", year:2006, era:"recherche", identity:"solar", mood:"tender", title:"Reunited", ref:null,
+        desc:"Solar notices Sunwoo has strange bruises. He says his dad teaches him to box. She does not push it. They help each other with homework — she does his science and English, he teaches her math at a high school level he already knows at age eleven." },
+      { id:"r07a", year:2007, era:"recherche", identity:"solar", mood:"tender", title:"Dating — Sort Of", ref:null,
+        desc:"Solar and Sunwoo start dating in middle school. The other kids ask her why she would be with someone so weird and quiet. Chaerin asks if she is worried their parents will find out. Solar says it is unlikely." },
+      { id:"r08a", year:2008, era:"recherche", identity:"solar", mood:"turning point", title:"Future CEO", ref:null,
+        desc:"Solar's father calls her into his office and tells her she will be the company's next CEO. He sees something in her the others lack. She hesitantly agrees without understanding what it means. Private tutors. College-level courses. Competitions. It begins." },
+      { id:"r08b", year:2008, era:"recherche", identity:"solar", mood:"bittersweet", title:"Yein Is Coming", ref:null,
+        desc:"The Lee parents announce a new sibling. Chaerin is outraged. Juyeon is confused. Jaehyun and Solar are excited. Yein Lee has not arrived yet, but her presence is already reshaping the household." },
+      { id:"r08c", year:2008, era:"recherche", identity:"solar", mood:"painful", title:"Sunwoo's Mother Dies", ref:null,
+        desc:"Sunwoo's mother is killed. His father begins to unravel. Training becomes military-grade. His father tasks him with building a gang. Sunwoo approaches Sangyeon — a boy getting beaten at home, living in poverty — and offers him a way out. The gang begins." },
+      { id:"r09a", year:2009, era:"recherche", identity:"solar", mood:"tender", title:"Yein Is Born", ref:null,
+        desc:"Lee Yein enters the world. Solar is fourteen. She has no idea yet that this baby will one day be one of the most important people in her life." },
+      { id:"r09b", year:2009, era:"recherche", identity:"solar", mood:"tense", title:"The Second Member", ref:null,
+        desc:"While making a delivery through an alley, Sunwoo finds Hyunjae getting attacked over a bad drug deal. He pulls a gun on the attackers and saves him. Hyunjae was trying to escape his alcoholic father. He becomes the second gang member." },
+      { id:"r10a", year:2010, era:"recherche", identity:"solar", mood:"tense", title:"Freshman Year — The Gang Grows", ref:null,
+        desc:"High school begins. Sunwoo's father pushes toward their first operation. Sunwoo starts using drugs to manage the stress. He recruits Hyunjoon — a kid with a fancy knife and no direction — and Eric, a homeless boy sleeping under a bridge. Third and fourth members." },
+      { id:"r10b", year:2010, era:"recherche", identity:"solar", mood:"turning point", title:"The Truth", ref:"170:00",
+        desc:"Solar pushes until Sunwoo admits he has been using drugs. Then Hyunjoon hints there is far more she does not know. She demands the full truth. He tells her everything — the gang, the jobs, what his father makes him do. She does not leave." },
+      { id:"r10c", year:2010, era:"recherche", identity:"solar", mood:"tense", title:"First Job", ref:"147:00",
+        desc:"Solar is in Sunwoo's car doing his homework when a call comes in about an attack at the mansion. She opens the glove box, loads his spare gun, lights him a cigarette. She has now crossed into his world completely." },
+      { id:"r11a", year:2011, era:"recherche", identity:"solar", mood:"painful", title:"The Party Scene Begins", ref:null,
+        desc:"Sunwoo brings Solar to a party. She asks to try drugs when she sees him using. He lets her. She goes to Hyunjoon for more behind Sunwoo's back. Sunwoo starts giving them to her himself — until he realizes she is getting too deep and tries to cut her off." },
+      { id:"r11b", year:2011, era:"recherche", identity:"solar", mood:"tense", title:"Chanhee Notices", ref:"160:00",
+        desc:"Chanhee sees the powder under Solar's nose and her erratic behavior. He confronts Sunwoo directly. Sunwoo says he was monitoring her. Chanhee tells him he is clearly not monitoring well enough." },
+      { id:"r12a", year:2012, era:"recherche", identity:"solar", mood:"painful", title:"The Siblings Find Out", ref:null,
+        desc:"Chaerin catches Solar sneaking in and threatens to tell their parents unless Solar brings her along. Juyeon overhears and demands to come too. Both siblings begin using. They start relying on Solar to get the best drugs from her sessions with dealers." },
+      { id:"r12b", year:2012, era:"recherche", identity:"solar", mood:"painful", title:"A Gut Feeling", ref:"59:00",
+        desc:"Solar starts feeling abnormally sick. She tells herself it is the drugs. At a party she takes a test. It is positive. She panics. She tells no one — because she is not planning to stop using." },
+      { id:"r12c", year:2012, era:"recherche", identity:"solar", mood:"painful", title:"The Doctor", ref:"60:00",
+        desc:"Solar gets what seems like a period and finally goes to a doctor. She had a miscarriage. She tells no one. She buries it in the darkest part of herself where she will not let herself think about it — until years later, when Sunwoo finds out." },
+      { id:"r13a", year:2013, era:"recherche", identity:"solar", mood:"turning point", title:"The Incident — She Leaves", ref:null,
+        desc:"May 2013. Solar has just graduated high school. Something happens — something she will not speak of directly for years. She gets in a taxi, books a flight to Korea, calls her aunt. She is eighteen years old and she is doing the one thing she has always been good at." },
+      { id:"b13a", year:2013, era:"between", identity:"soomi", mood:"origin", title:"Seoul — Starting Over", ref:null,
+        desc:"Solar lives with her aunt and works a day job while secretly training every night. She sees K-pop ads all over Seoul and begins auditioning. Big Hit is the last one she tries and the only one that says yes. The CEO believes in her completely. She quits her job the next day." },
+      { id:"b13b", year:2013, era:"between", identity:"soomi", mood:"tender", title:"Jungkook", ref:"51:00",
+        desc:"One to two months into training. She is staying late alone in the dance room. Down the hall, a young Jungkook is doing exactly the same. They meet. They talk like they have known each other forever from the very first five minutes. Something clicks." },
+      { id:"b1416", year:2014, era:"between", identity:"soomi", mood:"tender", title:"2014–2016 — Jungkook Era", ref:null,
+        desc:"The quietest chapter. The most complete. Solar and Jungkook are in a secretive, protective relationship — the kind that feels easy precisely because neither of them planned for it. They grew up in Korea together. It is the closest either of them has felt to something clean." },
+      { id:"b17a", year:2017, era:"between", identity:"soomi", mood:"bittersweet", title:"KCON — New York", ref:null,
+        desc:"KCON brings Solar back to New York for the first time since she left at eighteen. On a rooftop, she and Jimin (BTS) share a mutual moment neither of them chose cleanly. Jungkook has always known how Jimin feels. Later, Solar ends up parked outside the Lee family castle with Jungkook. She does not go in." },
+      { id:"b18a", year:2018, era:"between", identity:"soomi", mood:"painful", title:"The Stalker — The Scandal", ref:null,
+        desc:"A stalker sends Jungkook threatening messages for months: break up with Solar or the photos go public. He and Solar are engaged. Jungkook, trying to protect her but breaking under the pressure, explodes and tells her to get out. The stalker releases the photos anyway. Solar blocks him. Calls off the engagement. Does not let him explain." },
+      { id:"b18b", year:2018, era:"between", identity:"solar", mood:"painful", title:"The Aftermath — YG", ref:null,
+        desc:"Media hate lasts months. Solar becomes an alcoholic. YG makes an offer — they will buy her out of Big Hit and give her a new start. She takes it. She leaves Big Hit, Jungkook, Jimin, and the rest of the Bangtan boys. She is not a stranger to starting over." },
+      { id:"b19a", year:2019, era:"between", identity:"soomi", mood:"turning point", title:"Jinhwan", ref:null,
+        desc:"At YG, Solar meets Kim Jinhwan — eldest of iKON. He finds her in a bad state and makes it his quiet project to pull her back. No grand gesture. He just stays. Her alcoholism fades. YG puts her on a pedestal and she rises faster than anyone has seen a solo artist rise." },
+      { id:"d19a", year:2019, era:"delicate", identity:"soomi", mood:"chaotic", title:"01:00 — Delicate Begins", ref:"01:00",
+        desc:"Solar is twenty-four. Running late to recording again, sprinting down YG's halls in Converse. She has a friends-with-benefits arrangement with Jinhwan that keeps becoming something neither of them has named. The stalker has not reappeared yet. Everything is fine. It is not fine." },
+      { id:"d19b", year:2019, era:"delicate", identity:"soomi", mood:"tender", title:"Accidental Road Trip", ref:"44:00",
+        desc:"Jinhwan yanks Solar out before she can drink with the iKON boys. They drive with no destination. They end up fifty minutes from Seoul — Seongnam. He announces they are taking a road trip. She has no idea why she feels happy." },
+      { id:"d19c", year:2019, era:"delicate", identity:"solar", mood:"tense", title:"The Stalker Returns", ref:null,
+        desc:"An unknown number texts Solar during a recording session. The messages are intimate in their threat — they know what she has been doing, who she has been with. The campaign against her is beginning again. This time the target is her life, not just her career." },
+      { id:"d19d", year:2019, era:"delicate", identity:"solar", mood:"painful", title:"Jinhwan Drugged — Ilsan-ri", ref:null,
+        desc:"At the Hilton in Ilsan-ri, Solar finds Jinhwan unconscious at the top of the stairs. A barista working for the stalker had put something in his coffee. Solar kneels beside him alone, checks his pulse, smells the sour scent in the cup, and calls 119 while crying too hard to speak clearly." },
+      { id:"d19e", year:2019, era:"delicate", identity:"soomi", mood:"turning point", title:"End of 2019", ref:"62:00",
+        desc:"Chapters 01:00 through 62:00 close out 2019. The stalker has shown herself. Jinhwan has survived. Solar has barely held everything together and let too many things crack open in the process." },
+      { id:"d20a", year:2020, era:"delicate", identity:"solar", mood:"painful", title:"New York — The Return", ref:null,
+        desc:"Solar goes back to New York. The Lee family home. Her father's apology. Baby Yein, now eleven, who just wants her sister back. Sunwoo is there — back in her orbit and impossible to resist. She sleeps with him once and spends the rest of the trip hating herself for it." },
+      { id:"d20b", year:2020, era:"delicate", identity:"solar", mood:"tense", title:"Chapters 62–121", ref:null,
+        desc:"The second scandal erupts. Jinhwan cheats on Solar with his ex — Jimin of AOA, one of the story's primary villains who has been circling him. Solar and Jinhwan break up. She returns to Seoul and takes up with Jungkook, who has re-entered her life. She begins using drugs again quietly." },
+      { id:"d20c", year:2020, era:"delicate", identity:"soomi", mood:"turning point", title:"Jungkook Re-enters", ref:null,
+        desc:"Jungkook fully re-enters Solar's life. They text, they orbit each other at events, and eventually they are sharing a space again. He plays her a song on guitar in their room — candles, fairy lights, flowers on the floor. She is hiding the drugs from him. She watches him play and wishes, just once, they could be normal people." },
+      { id:"d21a", year:2021, era:"delicate", identity:"solar", mood:"painful", title:"Jimin (AOA) — The Threat", ref:null,
+        desc:"Jimin of AOA is Jinhwan's ex and one of the story's villains. She has been working with the stalker operation. Solar kills her in self-defense in a studio — knife to the chest, a skill taught to her by Sunwoo. Solar does not miss. She was taught right." },
+      { id:"d21b", year:2021, era:"delicate", identity:"solar", mood:"resolution", title:"180:00 — The Ending", ref:"180:00",
+        desc:"Solar is twenty-six. Tired in a bone-deep way she cannot explain. She halts her activities. YG agrees to damage control. She moves into the new building. The memorial for Sunwoo sits by the window overlooking Seoul. For the first time in a decade, there is no one to run to and no one to run from. She is just herself. Whoever that is." },
+      { id:"p22a", year:2022, era:"peace", identity:"solar", mood:"turning point", title:"Peace Begins", ref:null,
+        desc:"Solar is 27. Jinhwan is 28. Jungkook is 27. Sunwoo is 27. Yein is 14 and texting her sister unanswered messages, terrified of losing her again. Jaehyun accepts Sunwoo's personal invitation to join the gang. The dust has settled. Now they figure out what to do next." },
+      { id:"p22b", year:2022, era:"peace", identity:"solar", mood:"painful", title:"Jinhwan Goes Missing", ref:null,
+        desc:"After the December incident, Jinhwan leaves Seoul without telling anyone. Jungkook tries to reach him. No answer. He calls Junhoe — none of the iKON members have seen him in months. Jinhwan is somewhere alone, unaccounted for." },
+      { id:"p22c", year:2022, era:"peace", identity:"solar", mood:"tense", title:"Jeju", ref:null,
+        desc:"Jungkook gets tickets to Jeju and gives them to Solar. Someone reminds her that Jeju is Jinhwan's hometown — his sister owns a cafe there. She goes to find her. His sister says he came home for a while, then disappeared. He assumed he went back to Seoul. Then a gift arrives with a note in handwriting that is not quite Jinhwan's." },
+    ];
+  </script>
+  <script src="app.js"></script>
+
+</body>
+</html>
