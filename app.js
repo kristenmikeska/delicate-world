@@ -80,7 +80,6 @@ function buildCharacters() {
     block.className = 'group-block';
     block.innerHTML = `
       <div class="group-meta">
-        <div class="group-label">Group</div>
         <div class="group-title">${group.label}</div>
         <div class="group-sub">${group.sub}</div>
       </div>
@@ -92,9 +91,6 @@ function buildCharacters() {
     group.characters.forEach(char => {
       const bubble = document.createElement('div');
       bubble.className = 'bubble';
-      const primaryThread = char.connections && char.connections.length
-        ? char.connections[0].split('—')[0].trim()
-        : (char.alias || char.role);
       const evidenceCount = (char.images || []).length;
       bubble.innerHTML = `
         ${char.pfp
@@ -103,7 +99,6 @@ function buildCharacters() {
         <div class="bubble-copy">
           <div class="bubble-name">${char.name}</div>
           <div class="bubble-role" style="color:${char.accent}">${char.role}</div>
-          <div class="bubble-thread">${primaryThread}</div>
           ${evidenceCount ? `<div class="bubble-evidence">${evidenceCount} images</div>` : ''}
         </div>
       `;
@@ -666,6 +661,8 @@ function buildWeb() {
     path.setAttribute('d', webCurve(src.x, src.y, tgt.x, tgt.y));
     path.setAttribute('class', `web-edge web-edge--${e.type}`);
     path.setAttribute('fill', 'none');
+    path.dataset.src = e.s;
+    path.dataset.tgt = e.t;
     edgeG.appendChild(path);
     edgeEls.push({ el: path, s: e.s, t: e.t });
     adj[e.s].add(e.t);
@@ -682,6 +679,7 @@ function buildWeb() {
     g.setAttribute('class', `web-node web-node--${n.group}${n.deceased ? ' web-node--deceased' : ''}`);
     g.setAttribute('transform', `translate(${n.x},${n.y})`);
     g.dataset.id = n.id;
+    g.dataset.solarConnected = (n.id === 'solar' || (adj['solar'] && adj['solar'].has(n.id))) ? 'true' : 'false';
 
     const r = n.id === 'solar' ? 26 : 20;
 
@@ -720,8 +718,7 @@ function buildWeb() {
     });
 
     g.addEventListener('mouseleave', () => {
-      edgeEls.forEach(({ el }) => el.style.opacity = '');
-      document.querySelectorAll('#rel-web .web-node').forEach(nd => nd.style.opacity = '');
+      applyWebFilter();
     });
 
     g.addEventListener('click', () => showWebPopup(n, WEB_EDGES, nodeMap));
@@ -741,6 +738,36 @@ function buildWeb() {
         <span>${item.label}</span>
       </div>
     `).join('');
+  }
+
+  applyWebFilter();
+}
+
+let webShowAll = false;
+
+function applyWebFilter() {
+  document.querySelectorAll('#rel-web .web-edge').forEach(el => {
+    const isSolar = el.dataset.src === 'solar' || el.dataset.tgt === 'solar';
+    el.style.opacity = (!webShowAll && !isSolar) ? '0' : '';
+  });
+  document.querySelectorAll('#rel-web .web-node').forEach(nd => {
+    nd.style.opacity = (!webShowAll && nd.dataset.solarConnected !== 'true') ? '0.15' : '';
+  });
+}
+
+function toggleWebFilter() {
+  webShowAll = !webShowAll;
+  applyWebFilter();
+  const btn = document.getElementById('web-filter-btn');
+  if (btn) btn.textContent = webShowAll ? 'Solar Only' : 'Show All';
+  const desc = btn && btn.closest('p');
+  if (desc) {
+    const prefix = desc.childNodes[0];
+    if (prefix && prefix.nodeType === Node.TEXT_NODE) {
+      prefix.textContent = webShowAll
+        ? 'Showing all connections. '
+        : 'Showing Solar\'s connections. ';
+    }
   }
 }
 

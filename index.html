@@ -13,15 +13,12 @@
     <a class="logo" href="#" onclick="showSection('home');return false;">delicate</a>
     <ul class="nav-links">
       <li><a href="#" data-section="home">Home</a></li>
+      <li><a href="#" data-section="sites">Sites</a></li>
       <li><a href="#" data-section="characters">Characters</a></li>
       <li><a href="#" data-section="web">Web</a></li>
       <li><a href="#" data-section="timeline">Timeline</a></li>
       <li><a href="#" data-section="social">Social</a></li>
-      <li><a href="#" data-section="sites">Sites</a></li>
-
       <li><a href="#" data-section="vault">Vault</a></li>
-      <li><a href="#" data-section="sites" data-site="lee">Lee Industries</a></li>
-      <li><a href="#" data-section="sites" data-site="kimco">Kim Company</a></li>
     </ul>
   </nav>
 
@@ -237,7 +234,7 @@
   <section id="section-web" class="section">
     <div class="section-header">
       <h2>Connections</h2>
-      <p>Hover any node to highlight their connections. Click to see a full summary.</p>
+      <p>Hover any node to highlight connections. Click for a full summary. <button id="web-filter-btn" class="web-filter-btn" onclick="toggleWebFilter()">Show All</button></p>
     </div>
     <div class="inner">
       <div class="web-legend" id="web-legend"></div>
