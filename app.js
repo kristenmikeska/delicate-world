@@ -1080,6 +1080,20 @@ function navigateSite(siteId) {
   }
 }
 
+function runIntroScreen() {
+  const screen   = document.getElementById('intro-screen');
+  if (!screen) return;
+  const wordmark = screen.querySelector('.intro-wordmark');
+  const line1    = document.getElementById('iline-1');
+  const line2    = document.getElementById('iline-2');
+
+  setTimeout(() => { if (wordmark) wordmark.classList.add('visible'); }, 300);
+  setTimeout(() => { if (line1)    line1.classList.add('visible');    }, 1100);
+  setTimeout(() => { if (line2)    line2.classList.add('visible');    }, 2100);
+  setTimeout(() => { screen.classList.add('fade-out');                }, 3600);
+  setTimeout(() => { screen.remove();                                  }, 4700);
+}
+
 function updateDesktopClock() {
   const el = document.getElementById('desktop-clock');
   if (!el) return;
@@ -1105,6 +1119,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (btn.dataset.site) navigateSite(btn.dataset.site);
     });
   });
+
+  runIntroScreen();
 
   updateDesktopClock();
   setInterval(updateDesktopClock, 60000);

@@ -102,6 +102,66 @@ body {
 }
 .section.active { display: block; }
 
+/* ─── INTRO SCREEN ───────────────────────────────────────────────────────────── */
+#intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #05040a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease;
+}
+
+#intro-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.intro-inner {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.intro-wordmark {
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.45em;
+  color: rgba(180, 140, 240, 0.18);
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.intro-wordmark.visible {
+  opacity: 1;
+}
+
+.intro-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.intro-line {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  color: #3a2a5a;
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.intro-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ─── DESKTOP HOME ───────────────────────────────────────────────────────────── */
 #section-home {
   display: none;
