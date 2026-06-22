@@ -21,6 +21,7 @@ let isDragging = false;
 
 function initDuality() {
   const hero = document.querySelector('.duality-hero');
+  if (!hero) return;
   const divider = document.querySelector('.duality-divider');
   const solarSide = document.querySelector('.duality-side.solar-side');
   const soomiSide = document.querySelector('.duality-side.soomi-side');
@@ -1079,6 +1080,16 @@ function navigateSite(siteId) {
   }
 }
 
+function updateDesktopClock() {
+  const el = document.getElementById('desktop-clock');
+  if (!el) return;
+  const now = new Date();
+  el.textContent = now.toLocaleString('en-US', {
+    weekday: 'short', month: 'short', day: 'numeric',
+    hour: 'numeric', minute: '2-digit',
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('#nav .nav-links a').forEach(a => {
     a.addEventListener('click', e => {
@@ -1088,12 +1099,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelectorAll('.browser-shortcut').forEach(btn => {
+  document.querySelectorAll('.dock-item').forEach(btn => {
     btn.addEventListener('click', () => {
       showSection(btn.dataset.section);
       if (btn.dataset.site) navigateSite(btn.dataset.site);
     });
   });
+
+  updateDesktopClock();
+  setInterval(updateDesktopClock, 60000);
 
   initDuality();
   buildCharacters();

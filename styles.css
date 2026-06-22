@@ -102,225 +102,208 @@ body {
 }
 .section.active { display: block; }
 
-/* ─── DUALITY HERO ──────────────────────────────────────────────────────────── */
+/* ─── DESKTOP HOME ───────────────────────────────────────────────────────────── */
 #section-home {
   display: none;
+  padding-top: 0;
 }
 #section-home.active {
+  display: block;
+  padding-top: 0;
+  min-height: unset;
+}
+
+.desktop {
+  width: 100%;
+  height: calc(100vh - 56px);
+  margin-top: 56px;
   display: flex;
   flex-direction: column;
+  background:
+    radial-gradient(ellipse at 65% 25%, rgba(90, 40, 150, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 75%, rgba(50, 20, 100, 0.10) 0%, transparent 50%),
+    linear-gradient(160deg, #0e0919 0%, #080610 45%, #050408 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Menubar */
+.desktop-menubar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 26px;
+  background: rgba(6, 4, 12, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+.menubar-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.menubar-logo {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #d8c8f0;
+  font-style: italic;
+}
+
+.menubar-tag {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: #3a2a5a;
+}
+
+.menubar-clock {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  color: #5a4a7a;
+}
+
+/* Desktop area — wallpaper */
+.desktop-area {
+  flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  min-height: 100vh;
 }
 
-.duality-hero {
-  position: absolute;
-  inset: 0;
-  height: auto;
-  display: flex;
-  overflow: hidden;
-  cursor: col-resize;
+.desktop-title {
+  text-align: center;
   user-select: none;
-}
-
-.duality-side {
-  position: relative;
-  overflow: hidden;
-  transition: flex 0.05s;
-  flex: 1;
-}
-
-.duality-side .bg-images {
-  position: absolute;
-  inset: 0;
-}
-
-.duality-side .bg-images img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1.2s ease-in-out;
-}
-
-.duality-side .bg-images img.visible { opacity: 1; }
-
-.duality-side .overlay {
-  position: absolute;
-  inset: 0;
   pointer-events: none;
 }
 
-.duality-side.solar-side .overlay {
-  background: linear-gradient(135deg, rgba(120,20,10,0.72) 0%, rgba(8,8,15,0.78) 100%);
-}
-
-.duality-side.soomi-side .overlay {
-  background: linear-gradient(225deg, rgba(60,20,100,0.72) 0%, rgba(8,8,15,0.78) 100%);
-}
-
-.duality-side .label {
-  position: absolute;
-  bottom: 40px;
-  padding: 0 40px;
-  z-index: 2;
-  opacity: 0.6;
-  transition: opacity 0.3s;
-}
-
-.duality-side:hover .label { opacity: 1; }
-
-.duality-side.solar-side .label { left: 0; }
-.duality-side.soomi-side .label { right: 0; text-align: right; }
-
-.duality-side .label h2 {
-  font-size: clamp(18px, 2.5vw, 32px);
-  font-weight: normal;
+.desktop-wordmark {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 300;
   font-style: italic;
-  letter-spacing: 4px;
-  margin-bottom: 6px;
+  letter-spacing: 0.5em;
+  color: rgba(160, 120, 220, 0.08);
+  line-height: 1;
 }
 
-.duality-side.solar-side .label h2 { color: #f0c8c0; }
-.duality-side.soomi-side .label h2 { color: #d8c0f0; }
-
-.duality-side .label p {
-  font-size: 13px;
-  letter-spacing: 1px;
-  opacity: 0.7;
-  max-width: 300px;
+.desktop-sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(120, 90, 170, 0.2);
+  margin-top: 10px;
 }
 
-.duality-divider {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 50%;
-  width: 2px;
-  background: rgba(255,255,255,0.15);
-  z-index: 10;
-  cursor: col-resize;
-  transform: translateX(-50%);
-}
-
-.duality-divider::after {
-  content: '⟺';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: rgba(255,255,255,0.4);
-  font-size: 18px;
-  background: rgba(8,8,15,0.7);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
+/* Dock */
+.desktop-dock-wrap {
   display: flex;
-  align-items: center;
   justify-content: center;
-  line-height: 36px;
-  text-align: center;
-}
-
-/* ─── BROWSER HOME ───────────────────────────────────────────────────────────── */
-.browser-home {
-  position: relative;
-  z-index: 2;
-  padding: 52px 40px 64px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-}
-
-.browser-greeting {
-  font-size: 13px;
-  font-style: italic;
-  letter-spacing: 3px;
-  color: var(--text3);
-  margin: 0;
-}
-
-.browser-search-bar {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  width: min(600px, 90%);
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 14px 24px;
-  cursor: default;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.browser-search-bar:hover {
-  border-color: #3a2a5a;
-  box-shadow: 0 0 0 3px #2a1a4a44;
-}
-
-.browser-search-icon {
-  width: 16px;
-  height: 16px;
-  color: var(--text3);
+  padding-bottom: 20px;
   flex-shrink: 0;
 }
 
-.browser-search-text {
-  font-size: 15px;
-  letter-spacing: 4px;
-  color: var(--text2);
-  font-style: italic;
-}
-
-.browser-shortcuts {
+.desktop-dock {
   display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 4px;
+  align-items: center;
+  gap: 0;
+  padding: 10px 14px;
+  background: rgba(10, 6, 20, 0.72);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
-.browser-shortcut {
+.dock-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dock-sep {
+  width: 1px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 0 10px;
+}
+
+.dock-item {
   background: none;
   border: none;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font);
-  color: var(--text);
-}
-
-.shortcut-icon-wrap {
-  width: 72px;
-  height: 72px;
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 16px;
+  padding: 4px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 26px;
-  color: var(--text2);
-  transition: border-color 0.2s, transform 0.15s, background 0.2s;
+  position: relative;
+  transition: transform 0.15s ease;
+  font-family: var(--font);
 }
 
-.browser-shortcut:hover .shortcut-icon-wrap {
-  border-color: #3a2a5a;
-  background: #1a1025;
-  transform: translateY(-3px);
+.dock-item:hover {
+  transform: translateY(-6px) scale(1.08);
 }
 
-.shortcut-label {
-  font-size: 12px;
-  color: var(--text3);
-  letter-spacing: 1px;
+.dock-item:hover .dock-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0px);
 }
+
+.dock-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: rgba(30, 18, 55, 0.85);
+  color: #a888d8;
+}
+
+.dock-item:hover .dock-icon {
+  border-color: rgba(180, 140, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(100, 50, 180, 0.25);
+}
+
+.dock-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(14, 8, 28, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+  padding: 4px 11px;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: #c0aae0;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s, transform 0.15s;
+  pointer-events: none;
+}
+
+/* Per-icon color tints */
+.dock-icon--characters { color: #b090e8; }
+.dock-icon--web        { color: #70a8d0; }
+.dock-icon--timeline   { color: #78c090; }
+.dock-icon--social     { color: #d09060; }
+.dock-icon--vault      { color: #c070e8; }
+.dock-icon--yg         { background: rgba(12, 12, 22, 0.9); color: #e8e8f0; }
+.dock-icon--ledger     { background: rgba(22, 16, 6, 0.9);  color: #c8a040; }
+.dock-icon--pulse      { background: rgba(28, 8, 8, 0.9);   color: #e06060; }
+.dock-icon--lee        { background: rgba(6, 14, 26, 0.9);  color: #7098c8; }
+.dock-icon--kimco      { background: rgba(6, 22, 14, 0.9);  color: #68b080; }
 
 /* ─── RELATIONSHIP WEB ───────────────────────────────────────────────────────── */
 
