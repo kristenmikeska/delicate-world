@@ -9,6 +9,8 @@ function showSection(id) {
   if (sec) sec.classList.add('active');
   const link = document.querySelector(`#nav .nav-links a[data-section="${id}"]`);
   if (link) link.classList.add('active');
+  // Reset vault to desk scene when navigating to vault
+  if (id === 'vault') closeVaultItem();
 }
 
 // ── Duality Slider ───────────────────────────────────────────────────────────
@@ -77,9 +79,11 @@ function buildCharacters() {
     const block = document.createElement('div');
     block.className = 'group-block';
     block.innerHTML = `
-      <div class="group-label">Group</div>
-      <div class="group-title">${group.label}</div>
-      <div class="group-sub">${group.sub}</div>
+      <div class="group-meta">
+        <div class="group-label">Group</div>
+        <div class="group-title">${group.label}</div>
+        <div class="group-sub">${group.sub}</div>
+      </div>
       <div class="bubble-grid" id="group-${group.id}"></div>
     `;
     inner.appendChild(block);
@@ -88,12 +92,20 @@ function buildCharacters() {
     group.characters.forEach(char => {
       const bubble = document.createElement('div');
       bubble.className = 'bubble';
+      const primaryThread = char.connections && char.connections.length
+        ? char.connections[0].split('—')[0].trim()
+        : (char.alias || char.role);
+      const evidenceCount = (char.images || []).length;
       bubble.innerHTML = `
         ${char.pfp
           ? `<img class="bubble-img" src="${char.pfp}" alt="${char.name}" style="border-color:${char.accent}44">`
           : `<div class="bubble-placeholder">👤</div>`}
-        <div class="bubble-name">${char.name}</div>
-        <div class="bubble-role" style="color:${char.accent}">${char.role}</div>
+        <div class="bubble-copy">
+          <div class="bubble-name">${char.name}</div>
+          <div class="bubble-role" style="color:${char.accent}">${char.role}</div>
+          <div class="bubble-thread">${primaryThread}</div>
+          ${evidenceCount ? `<div class="bubble-evidence">${evidenceCount} images</div>` : ''}
+        </div>
       `;
       bubble.addEventListener('click', () => openCharModal(char));
       grid.appendChild(bubble);
@@ -389,7 +401,7 @@ function renderTimeline() {
 // ── Image path constants ──────────────────────────────────────────────────────
 const SI  = 'images/solars-instagram/';
 const DG  = 'images/delicate-gram/';
-const SW  = 'images/Sunwoo/';
+const SW  = 'images/sunwoo/';
 
 // ── Relationship Web ──────────────────────────────────────────────────────────
 
@@ -778,7 +790,84 @@ function showWebPopup(node, edges, nodeMap) {
   backdrop.classList.remove('hidden');
 }
 
+// ── YG Artist Sub-pages ──────────────────────────────────────────────────────
+
+function ygResetToMain() {
+  const main   = document.getElementById('yg-main');
+  const soomi  = document.getElementById('yg-page-soomi');
+  const ikon   = document.getElementById('yg-page-ikon');
+  const footer = document.querySelector('.yg-footer');
+  const portal = document.getElementById('yg-portal');
+  if (main)   main.style.display   = '';
+  if (soomi)  soomi.style.display  = 'none';
+  if (ikon)   ikon.style.display   = 'none';
+  if (footer) footer.style.display = '';
+  if (portal) portal.classList.add('hidden');
+}
+
+function ygArtist(page) {
+  const main   = document.getElementById('yg-main');
+  const soomi  = document.getElementById('yg-page-soomi');
+  const ikon   = document.getElementById('yg-page-ikon');
+  const footer = document.querySelector('.yg-footer');
+
+  // Always hide both sub-pages first
+  if (soomi)  soomi.style.display = 'none';
+  if (ikon)   ikon.style.display  = 'none';
+
+  if (!page) {
+    if (main)   main.style.display   = '';
+    if (footer) footer.style.display = '';
+    const frame = document.getElementById('site-frame-yg');
+    if (frame) frame.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  if (main)   main.style.display   = 'none';
+  if (footer) footer.style.display = 'none';
+
+  const target = page === 'soomi' ? soomi : page === 'ikon' ? ikon : null;
+  if (target) target.style.display = 'block';
+
+  const frame = document.getElementById('site-frame-yg');
+  if (frame) frame.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openIkonEmails() {
+  document.getElementById('yg-email-overlay').classList.remove('hidden');
+}
+
+function closeIkonEmails() {
+  document.getElementById('yg-email-overlay').classList.add('hidden');
+}
+
+function openKimAssets() {
+  document.getElementById('kim-assets-overlay').classList.remove('hidden');
+}
+
+function closeKimAssets() {
+  document.getElementById('kim-assets-overlay').classList.add('hidden');
+}
+
 // ── Init ──────────────────────────────────────────────────────────────────────
+
+function ledgerNav(el, cat) {
+  // Update active state
+  document.querySelectorAll('.ledger-nav a').forEach(a => a.classList.remove('ledger-nav-active'));
+  el.classList.add('ledger-nav-active');
+
+  if (cat === 'society') {
+    const sec = document.querySelector('.ledger-society-section');
+    if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else if (cat === 'archive') {
+    const sec = document.querySelector('.ledger-archive');
+    if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    // Business / Markets / Obituaries — scroll to top of the ledger site frame
+    const frame = document.getElementById('site-frame-ledger');
+    if (frame) frame.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
 
 function toggleLedgerArticle(id) {
   const art = document.getElementById(id);
@@ -835,6 +924,55 @@ const VAULT_TRACKS = ['solo','bubblepop','liphip','howsthis','serene','onlyyou',
 
 let vaultCurrentTrack = null;
 let vaultPlaying = false;
+
+// ── Vault Desk ──────────────────────────────────────────
+
+const VAULT_OVERLAYS = ['notebook', 'phone', 'rings', 'gifts', 'engring'];
+
+function openVaultItem(item) {
+  const scene = document.getElementById('vault-desk-scene');
+  if (scene) scene.style.display = 'none';
+  VAULT_OVERLAYS.forEach(id => {
+    const el = document.getElementById('vault-overlay-' + id);
+    if (el) el.style.display = 'none';
+  });
+  const target = document.getElementById('vault-overlay-' + item);
+  if (target) target.style.display = ['phone', 'rings', 'engring'].includes(item) ? 'flex' : 'block';
+}
+
+function closeVaultItem() {
+  VAULT_OVERLAYS.forEach(id => {
+    const el = document.getElementById('vault-overlay-' + id);
+    if (el) el.style.display = 'none';
+  });
+  const scene = document.getElementById('vault-desk-scene');
+  if (scene) scene.style.display = 'flex';
+}
+
+function openPhoneConvo(id) {
+  const list = document.getElementById('vps-list');
+  if (list) list.style.display = 'none';
+  ['jinhwan', 'jungkook', 'chanhee', 'stalker'].forEach(cid => {
+    const el = document.getElementById('vps-chat-' + cid);
+    if (el) el.style.display = 'none';
+  });
+  const chat = document.getElementById('vps-chat-' + id);
+  if (chat) {
+    chat.style.display = 'flex';
+    // scroll to bottom
+    const msgs = chat.querySelector('.vps-messages');
+    if (msgs) setTimeout(() => { msgs.scrollTop = msgs.scrollHeight; }, 50);
+  }
+}
+
+function closePhoneConvo() {
+  ['jinhwan', 'jungkook', 'chanhee', 'stalker'].forEach(cid => {
+    const el = document.getElementById('vps-chat-' + cid);
+    if (el) el.style.display = 'none';
+  });
+  const list = document.getElementById('vps-list');
+  if (list) list.style.display = 'block';
+}
 
 function selectVaultTrack(id) {
   if (id === 'delicate') {
@@ -899,6 +1037,7 @@ function navigateSite(siteId) {
   const URLS = { yg: 'yg-entertainment.com', ledger: 'uppereastsideledger.com', pulse: 'readthepulse.co', lee: 'lee-industries.com', kimco: 'kim-company.global' };
   if (siteId === 'lee') { setTimeout(initLeeStock, 200); }
   if (siteId === 'kimco') { setTimeout(checkKimTracking, 100); }
+  if (siteId === 'yg') { setTimeout(ygResetToMain, 0); }
 
   document.querySelectorAll('.site-frame').forEach(f => f.classList.add('hidden'));
 

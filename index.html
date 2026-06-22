@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Delicate — An Interactive World</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=cleanup-20260612b">
 </head>
 <body>
 
@@ -270,27 +270,46 @@
 
     <!-- Sites new-tab home -->
     <div class="sites-newtab" id="sites-newtab">
-      <p class="sites-newtab-label">Bookmarked</p>
+      <div class="sites-newtab-hero">
+        <p class="sites-newtab-label">Bookmarked Archive</p>
+        <h2>Every public record has a private shadow.</h2>
+        <p>Move through the companies, tabloids, and industry pages that tried to explain Solar Lee without ever really seeing her.</p>
+      </div>
       <div class="sites-newtab-tiles">
-        <button class="sites-newtab-tile" onclick="navigateSite('yg')">
+        <button class="sites-newtab-tile sites-newtab-tile--yg" onclick="navigateSite('yg')">
           <div class="sites-newtab-icon">YG</div>
-          <div class="sites-newtab-name">YG Entertainment</div>
+          <div class="sites-newtab-copy">
+            <div class="sites-newtab-name">YG Entertainment</div>
+            <div class="sites-newtab-desc">Artist pages, internal records, and the polished version of Kim Soomi.</div>
+          </div>
         </button>
-        <button class="sites-newtab-tile" onclick="navigateSite('ledger')">
+        <button class="sites-newtab-tile sites-newtab-tile--ledger" onclick="navigateSite('ledger')">
           <div class="sites-newtab-icon sites-newtab-icon--ledger">UEL</div>
-          <div class="sites-newtab-name">UES Ledger</div>
+          <div class="sites-newtab-copy">
+            <div class="sites-newtab-name">UES Ledger</div>
+            <div class="sites-newtab-desc">Castle society pages, finance coverage, and the girl Manhattan lost.</div>
+          </div>
         </button>
-        <button class="sites-newtab-tile" onclick="navigateSite('pulse')">
+        <button class="sites-newtab-tile sites-newtab-tile--pulse" onclick="navigateSite('pulse')">
           <div class="sites-newtab-icon sites-newtab-icon--pulse">PULSE</div>
-          <div class="sites-newtab-name">The Pulse</div>
+          <div class="sites-newtab-copy">
+            <div class="sites-newtab-name">The Pulse</div>
+            <div class="sites-newtab-desc">Scandal coverage, paparazzi drops, and everything the internet got wrong.</div>
+          </div>
         </button>
-        <button class="sites-newtab-tile" onclick="navigateSite('lee')">
+        <button class="sites-newtab-tile sites-newtab-tile--lee" onclick="navigateSite('lee')">
           <div class="sites-newtab-icon" style="background:linear-gradient(135deg,#1a2744,#2a3a60);color:#d4af37;font-family:'Georgia',serif;font-size:12px;">LEE</div>
-          <div class="sites-newtab-name">Lee Industries</div>
+          <div class="sites-newtab-copy">
+            <div class="sites-newtab-name">Lee Industries</div>
+            <div class="sites-newtab-desc">Corporate succession, family optics, and the heiress they renamed absence.</div>
+          </div>
         </button>
-        <button class="sites-newtab-tile" onclick="navigateSite('kimco')">
+        <button class="sites-newtab-tile sites-newtab-tile--kimco" onclick="navigateSite('kimco')">
           <div class="sites-newtab-icon" style="background:#080808;color:#cc0000;border:1px solid #cc0000;font-family:monospace;font-size:11px;">KC/</div>
-          <div class="sites-newtab-name">Kim Company</div>
+          <div class="sites-newtab-copy">
+            <div class="sites-newtab-name">Kim Company</div>
+            <div class="sites-newtab-desc">The other empire, the dead CEO, and the files nobody should have opened.</div>
+          </div>
         </button>
       </div>
     </div>
@@ -314,13 +333,16 @@
           </nav>
         </header>
 
+        <!-- ══ MAIN YG PAGE ══ -->
+        <div id="yg-main">
+
         <!-- Hero — Kim Soomi -->
         <div class="yg-hero">
           <div class="yg-hero-content">
             <div class="yg-hero-eyebrow">FEATURED ARTIST</div>
             <h1 class="yg-hero-name">KIM SOOMI</h1>
             <p class="yg-hero-sub">Korea's #1 Solo Artist &nbsp;·&nbsp; 5× Daesang Winner</p>
-            <button class="yg-hero-btn" onclick="showSection('social');loadSocialProfile('soomi')">View Profile ↗</button>
+            <button class="yg-hero-btn" onclick="ygArtist('soomi')">View Artist Page ↗</button>
           </div>
           <div class="yg-hero-img-wrap">
             <img class="yg-hero-img" src="images/solars-instagram/soomi-onstage.jpg" alt="Kim Soomi"
@@ -345,7 +367,7 @@
             </div>
 
             <!-- KIM SOOMI -->
-            <div class="yg-card yg-card--featured">
+            <div class="yg-card yg-card--featured yg-card--link" onclick="ygArtist('soomi')" style="cursor:pointer;">
               <div class="yg-card-visual yg-card-visual--photo">
                 <img src="images/solars-instagram/soomi-painisbeauty.jpg" alt="Kim Soomi"
                      onerror="this.src='images/solars-instagram/soomipfp.jpg'">
@@ -358,15 +380,15 @@
             </div>
 
             <!-- iKON -->
-            <div class="yg-card yg-card--group">
+            <div class="yg-card yg-card--group yg-card--link" onclick="ygArtist('ikon')" style="cursor:pointer;">
               <div class="yg-card-visual yg-card-visual--ikon">
-                <img src="images/delicate-gram/hanbinpfp.jpg"  title="B.I"       onerror="this.remove()">
-                <img src="images/delicate-gram/bobbypfp.jpg"   title="Bobby"     onerror="this.remove()">
-                <img src="images/delicate-gram/jinhwanpfp.jpg" title="Jinhwan"   onerror="this.remove()">
-                <img src="images/delicate-gram/yunpfp.jpg"     title="Yunhyeong" onerror="this.remove()">
-                <img src="images/delicate-gram/junepfp.jpg"    title="June"      onerror="this.remove()">
-                <img src="images/delicate-gram/donghyukpfp.jpg"title="Donghyuk"  onerror="this.remove()">
-                <img src="images/delicate-gram/chanwoopfp.jpg" title="Chanwoo"   onerror="this.remove()">
+                <img src="images/yg-entertainment/hanbin-photo.png"   title="B.I"       onerror="this.src='images/delicate-gram/hanbinpfp.jpg'">
+                <img src="images/yg-entertainment/bobby-photo.png"    title="Bobby"     onerror="this.src='images/delicate-gram/bobbypfp.jpg'">
+                <img src="images/yg-entertainment/jinhwan-photo.jpg"  title="Jinhwan"   onerror="this.src='images/delicate-gram/jinhwanpfp.jpg'">
+                <img src="images/yg-entertainment/yunhyeong-photo.png"title="Yunhyeong" onerror="this.src='images/delicate-gram/yunpfp.jpg'">
+                <img src="images/yg-entertainment/june-photo.png"     title="June"      onerror="this.src='images/delicate-gram/junepfp.jpg'">
+                <img src="images/yg-entertainment/donghyuk-photo.png" title="Donghyuk"  onerror="this.src='images/delicate-gram/donghyukpfp.jpg'">
+                <img src="images/yg-entertainment/chanwoo-photo.png"  title="Chanwoo"   onerror="this.src='images/delicate-gram/chanwoopfp.jpg'">
               </div>
               <div class="yg-card-info">
                 <div class="yg-card-name">iKON</div>
@@ -416,6 +438,8 @@
             </div>
           </div>
         </section>
+
+        </div><!-- /yg-main -->
 
         <!-- Footer -->
         <footer class="yg-footer">
@@ -502,6 +526,310 @@
           </div>
         </div>
 
+        <!-- ══ KIM SOOMI ARTIST PAGE ══ -->
+        <div class="yg-artist-page" id="yg-page-soomi" style="display:none;">
+          <div class="yg-ap-back">
+            <button onclick="ygArtist(null)">← Back to Artists</button>
+          </div>
+          <div class="yg-ap-banner">
+            <img src="images/yg-entertainment/soomi-horizontal-banner.jpg" alt="Kim Soomi">
+            <div class="yg-ap-banner-overlay">
+              <div class="yg-ap-banner-label">SOLO ARTIST</div>
+              <div class="yg-ap-banner-name">KIM SOOMI</div>
+              <div class="yg-ap-banner-sub">5× Daesang &nbsp;·&nbsp; Debut 2016</div>
+            </div>
+          </div>
+          <div class="yg-ap-body">
+            <div class="yg-ap-cols">
+              <div class="yg-ap-main">
+                <div class="yg-ap-section-label">ARTIST PROFILE</div>
+                <p class="yg-ap-bio">Born Solar Lee — performing as Kim Soomi — she signed to Big Hit Entertainment in 2013 and debuted in 2016 with her single <em>SOLO</em>. The debut was quiet by industry standards: no reality show, no survival program, no stated origin story. The music was sufficient. Her 2016–2017 EP <em>Princess</em> established her as a singular voice in the landscape, and follow-up singles <em>Bubble Pop</em> and <em>Lip &amp; Hip</em> built a devoted following before the trajectory changed entirely.</p>
+                <p class="yg-ap-bio">In 2018, a scandal forced a period of silence. YG Entertainment acquired her contract in the aftermath. She re-emerged later that year under YGE with <em>How's This</em> — a single that performed as if no interruption had occurred. The audience had waited. In 2019, collaborations with iKON — <em>Only You</em> with Jinhwan and Jay, and <em>Just For You</em> with the full group — made her the most-discussed artist in Korean pop for a sustained stretch of months. The full nature of her relationship with Kim Jinhwan has never been publicly addressed by either party.</p>
+                <p class="yg-ap-bio">Her 2021 EP <em>Pain Is Beauty</em> was described by critics as "a record that sounds like grief performed as triumph." It sold 1.2 million copies in its first week. She has not granted a personal interview since 2020.</p>
+
+                <div class="yg-ap-section-label" style="margin-top:40px;">DISCOGRAPHY</div>
+                <div class="yg-ap-discog">
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2021</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">PAIN IS BEAUTY <span class="yg-ap-album-feat">EP</span></div>
+                      <div class="yg-ap-album-meta">Pain Is Beauty · Morning Mood · KING · No. 5 · In the Flames · Never</div>
+                      <div class="yg-ap-album-meta" style="margin-top:2px;">YG Entertainment</div>
+                    </div>
+                  </div>
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2020</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">I'M A POP</div>
+                      <div class="yg-ap-album-meta">Digital Single · YG Entertainment</div>
+                    </div>
+                  </div>
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2019</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">JUST FOR YOU <span class="yg-ap-album-feat">feat. iKON</span></div>
+                      <div class="yg-ap-album-meta">Digital Single · Collaboration · YG Entertainment</div>
+                    </div>
+                  </div>
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2019</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">ONLY YOU <span class="yg-ap-album-feat">feat. Jay of iKON</span></div>
+                      <div class="yg-ap-album-meta">Digital Single · Collaboration · YG Entertainment</div>
+                    </div>
+                  </div>
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2019</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">SERENE</div>
+                      <div class="yg-ap-album-meta">Digital Single · YG Entertainment</div>
+                    </div>
+                  </div>
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2018</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">HOW'S THIS</div>
+                      <div class="yg-ap-album-meta">Digital Single · YG Entertainment · First YGE release</div>
+                    </div>
+                  </div>
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2018</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">LIP &amp; HIP</div>
+                      <div class="yg-ap-album-meta">Digital Single · Big Hit Entertainment</div>
+                    </div>
+                  </div>
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2017</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">BUBBLE POP</div>
+                      <div class="yg-ap-album-meta">Digital Single · Big Hit Entertainment</div>
+                    </div>
+                  </div>
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2016–17</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">PRINCESS <span class="yg-ap-album-feat">EP</span></div>
+                      <div class="yg-ap-album-meta">Princess · My Name · Who Are You · UR LIKE ME</div>
+                      <div class="yg-ap-album-meta" style="margin-top:2px;">Big Hit Entertainment</div>
+                    </div>
+                  </div>
+
+                  <div class="yg-ap-album">
+                    <div class="yg-ap-album-year">2016</div>
+                    <div class="yg-ap-album-info">
+                      <div class="yg-ap-album-title">SOLO</div>
+                      <div class="yg-ap-album-meta">Digital Single · Debut · Big Hit Entertainment</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div class="yg-ap-sidebar">
+                <div class="yg-ap-profile-photo">
+                  <img src="images/yg-entertainment/soomi-vertical-photo.jpg" alt="Kim Soomi" onerror="this.parentElement.style.background='#111'">
+                </div>
+                <div class="yg-ap-meta-block">
+                  <div class="yg-ap-meta-row"><span class="yg-ap-meta-label">Label</span><span>YG Entertainment</span></div>
+                  <div class="yg-ap-meta-row"><span class="yg-ap-meta-label">Formerly</span><span>Big Hit Entertainment</span></div>
+                  <div class="yg-ap-meta-row"><span class="yg-ap-meta-label">Debut</span><span>2016</span></div>
+                  <div class="yg-ap-meta-row"><span class="yg-ap-meta-label">YGE Since</span><span>2018</span></div>
+                  <div class="yg-ap-meta-row"><span class="yg-ap-meta-label">Genre</span><span>K-Pop / R&amp;B / Pop</span></div>
+                  <div class="yg-ap-meta-row"><span class="yg-ap-meta-label">Daesangs</span><span>5</span></div>
+                  <div class="yg-ap-meta-row"><span class="yg-ap-meta-label">Status</span><span class="yg-ap-status-active">Active</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ iKON ARTIST PAGE ══ -->
+        <div class="yg-artist-page" id="yg-page-ikon" style="display:none;">
+          <div class="yg-ap-back">
+            <button onclick="ygArtist(null)">← Back to Artists</button>
+          </div>
+          <div class="yg-ap-banner">
+            <img src="images/yg-entertainment/ikon-horizontal-banner.jpg" alt="iKON">
+            <div class="yg-ap-banner-overlay">
+              <div class="yg-ap-banner-label">GROUP · 7 MEMBERS</div>
+              <div class="yg-ap-banner-name">iKON</div>
+              <div class="yg-ap-banner-sub">Est. 2015 &nbsp;·&nbsp; YG Entertainment</div>
+            </div>
+          </div>
+          <div class="yg-ap-body">
+            <div class="yg-ap-section-label">GROUP PROFILE</div>
+            <p class="yg-ap-bio" style="max-width:720px;">Seven-member group formed through the survival program <em>Mix &amp; Match</em> in 2015. Known for a genre-bending sound across hip-hop, R&amp;B, and ballad — and for a catalogue that alternates between arena anthems and quiet devastation. Their 2019 collaboration with solo artist Kim Soomi produced the year's highest-charting single. They remain one of YG Entertainment's flagship acts.</p>
+
+            <div class="yg-ap-section-label" style="margin-top:40px;">MEMBERS</div>
+            <div class="yg-ap-members">
+              <div class="yg-ap-member">
+                <img src="images/yg-entertainment/hanbin-photo.png" onerror="this.src='images/delicate-gram/hanbinpfp.jpg'">
+                <div class="yg-ap-member-name">B.I</div>
+                <div class="yg-ap-member-role">Leader · Rapper</div>
+              </div>
+              <div class="yg-ap-member">
+                <img src="images/yg-entertainment/jinhwan-photo.jpg" onerror="this.src='images/delicate-gram/jinhwanpfp.jpg'">
+                <div class="yg-ap-member-name">Jinhwan</div>
+                <div class="yg-ap-member-role">Vocalist</div>
+              </div>
+              <div class="yg-ap-member">
+                <img src="images/yg-entertainment/bobby-photo.png" onerror="this.src='images/delicate-gram/bobbypfp.jpg'">
+                <div class="yg-ap-member-name">Bobby</div>
+                <div class="yg-ap-member-role">Rapper</div>
+              </div>
+              <div class="yg-ap-member">
+                <img src="images/yg-entertainment/yunhyeong-photo.png" onerror="this.src='images/delicate-gram/yunpfp.jpg'">
+                <div class="yg-ap-member-name">Yunhyeong</div>
+                <div class="yg-ap-member-role">Vocalist</div>
+              </div>
+              <div class="yg-ap-member">
+                <img src="images/yg-entertainment/june-photo.png" onerror="this.src='images/delicate-gram/junepfp.jpg'">
+                <div class="yg-ap-member-name">June</div>
+                <div class="yg-ap-member-role">Rapper · Vocalist</div>
+              </div>
+              <div class="yg-ap-member">
+                <img src="images/yg-entertainment/donghyuk-photo.png" onerror="this.src='images/delicate-gram/donghyukpfp.jpg'">
+                <div class="yg-ap-member-name">Donghyuk</div>
+                <div class="yg-ap-member-role">Vocalist · Dancer</div>
+              </div>
+              <div class="yg-ap-member">
+                <img src="images/yg-entertainment/chanwoo-photo.png" onerror="this.src='images/delicate-gram/chanwoopfp.jpg'">
+                <div class="yg-ap-member-name">Chanwoo</div>
+                <div class="yg-ap-member-role">Vocalist · Actor</div>
+              </div>
+            </div>
+
+            <div class="yg-ap-section-label" style="margin-top:40px;">DISCOGRAPHY (SELECTED)</div>
+            <div class="yg-ap-discog">
+              <div class="yg-ap-album">
+                <div class="yg-ap-album-year">2021</div>
+                <div class="yg-ap-album-info">
+                  <div class="yg-ap-album-title">Why Why Why</div>
+                  <div class="yg-ap-album-meta">Digital Single · YG Entertainment</div>
+                </div>
+              </div>
+              <div class="yg-ap-album">
+                <div class="yg-ap-album-year">2019</div>
+                <div class="yg-ap-album-info">
+                  <div class="yg-ap-album-title">Only You <span class="yg-ap-album-feat">feat. Kim Soomi</span></div>
+                  <div class="yg-ap-album-meta">Digital Single · Collaboration · YG Entertainment</div>
+                </div>
+              </div>
+              <div class="yg-ap-album">
+                <div class="yg-ap-album-year">2019</div>
+                <div class="yg-ap-album-info">
+                  <div class="yg-ap-album-title">i decide</div>
+                  <div class="yg-ap-album-meta">Mini Album · YG Entertainment</div>
+                </div>
+              </div>
+              <div class="yg-ap-album">
+                <div class="yg-ap-album-year">2018</div>
+                <div class="yg-ap-album-info">
+                  <div class="yg-ap-album-title">NEW KIDS: THE FINAL</div>
+                  <div class="yg-ap-album-meta">Mini Album · YG Entertainment</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hidden easter egg link -->
+          <div style="text-align:center;padding:40px 0 60px;">
+            <a href="#" onclick="openIkonEmails();return false;"
+               style="font-size:9px;color:#1a1a1a;font-family:var(--mono);letter-spacing:2px;text-decoration:none;"
+               onmouseover="this.style.color='#333'" onmouseout="this.style.color='#1a1a1a'">
+              Internal File Archive — Staff Only →
+            </a>
+          </div>
+        </div>
+
+        <!-- ══ MANAGER EMAIL OVERLAY ══ -->
+        <div class="yg-email-overlay hidden" id="yg-email-overlay">
+          <div class="yg-email-modal">
+            <div class="yg-email-modal-header">
+              <div class="yg-email-modal-title">
+                <span style="font-size:9px;color:#444;letter-spacing:3px;font-family:var(--mono);">YG ENTERTAINMENT — INTERNAL MAIL ARCHIVE / RESTRICTED</span>
+                <div style="font-size:16px;color:#ccc;font-weight:700;margin-top:6px;">Management Correspondence</div>
+                <div style="font-size:10px;color:#333;font-family:var(--mono);margin-top:4px;letter-spacing:1px;">FILE: KJISOO_YHS_2019-2020 &nbsp;·&nbsp; 3 MESSAGES &nbsp;·&nbsp; RETRIEVED FROM BACKUP SERVER</div>
+              </div>
+              <button class="yg-email-modal-close" onclick="closeIkonEmails()">✕</button>
+            </div>
+            <div class="yg-email-thread">
+
+              <!-- Email 1: Kang Jisoo → Yang Hyunsuk -->
+              <div class="yg-email">
+                <div class="yg-email-meta">
+                  <div class="yg-email-field"><span class="yg-email-label">FROM</span> Kang Jisoo &lt;kjisoo@ygfamily.com&gt;</div>
+                  <div class="yg-email-field"><span class="yg-email-label">TO</span> Yang Hyunsuk &lt;yhsuk@ygfamily.com&gt;</div>
+                  <div class="yg-email-field"><span class="yg-email-label">SUBJECT</span> [iKON × Kim Soomi] Collab Promotion — Personal Observation</div>
+                  <div class="yg-email-field"><span class="yg-email-label">DATE</span> June 14, 2019 &nbsp;·&nbsp; 11:43 PM</div>
+                </div>
+                <div class="yg-email-body">
+                  <p>Mr. Yang,</p>
+                  <p>I am writing to flag a matter I believe warrants your attention regarding the current iKON × Kim Soomi promotional cycle. The music is performing well and the media reception has been positive — I want to be clear that I am not raising concerns about the professional output.</p>
+                  <p>My concern is behavioral. Over the course of the past several weeks of promotion, I have observed that Kim Jinhwan and Kim Soomi have developed a level of familiarity that I believe extends beyond what this collaboration requires. Scheduled appearances are professional. What concerns me is the time they are spending together outside of those appearances — late evenings at the YG building and informal gatherings I was not made aware of in advance — which has been consistent and, in my opinion, deliberate.</p>
+                  <p>I want to be transparent: I do not yet know the nature of their relationship. What I can say is that the closeness is visible. If the press were to characterize it incorrectly, it would create a narrative we are not prepared to manage. Kim Jinhwan is one of iKON's most publicly beloved members. Any romantic association — particularly with an artist of Kim Soomi's particular profile — could complicate the group's image in ways that affect the broader YG roster.</p>
+                  <p>I am requesting authorization to limit their non-scheduled contact during the remainder of the promotional period. I am happy to discuss by phone at your convenience.</p>
+                  <p>Respectfully,<br>
+                  <strong>Kang Jisoo</strong><br>
+                  Senior Artist Manager, iKON<br>
+                  YG Entertainment</p>
+                </div>
+              </div>
+
+              <!-- Email 2: Yang Hyunsuk → Kang Jisoo -->
+              <div class="yg-email yg-email--reply">
+                <div class="yg-email-meta">
+                  <div class="yg-email-field"><span class="yg-email-label">FROM</span> Yang Hyunsuk &lt;yhsuk@ygfamily.com&gt;</div>
+                  <div class="yg-email-field"><span class="yg-email-label">TO</span> Kang Jisoo &lt;kjisoo@ygfamily.com&gt;</div>
+                  <div class="yg-email-field"><span class="yg-email-label">SUBJECT</span> RE: [iKON × Kim Soomi] Collab Promotion — Personal Observation</div>
+                  <div class="yg-email-field"><span class="yg-email-label">DATE</span> June 15, 2019 &nbsp;·&nbsp; 9:07 AM</div>
+                </div>
+                <div class="yg-email-body">
+                  <p>Manager Kang.</p>
+                  <p><em>Only You</em> is at #3 this week. Media is calling them the couple of the summer. That is the headline we wanted. That is the headline we have.</p>
+                  <p>Chemistry sells records. The public does not want to know if it is real — they want to believe it is. Let them work. Keep the schedule clean, keep the cameras happy. That is the job.</p>
+                  <p>If there is a problem with iKON's on-stage performance or professional conduct, bring it to me. Otherwise, handle it.</p>
+                  <p>— YHS</p>
+                </div>
+              </div>
+
+              <!-- Email 3: Kang Jisoo → Yang Hyunsuk (escalation) -->
+              <div class="yg-email yg-email--urgent">
+                <div class="yg-email-meta">
+                  <div class="yg-email-field"><span class="yg-email-label">FROM</span> Kang Jisoo &lt;kjisoo@ygfamily.com&gt;</div>
+                  <div class="yg-email-field"><span class="yg-email-label">TO</span> Yang Hyunsuk &lt;yhsuk@ygfamily.com&gt;</div>
+                  <div class="yg-email-field yg-email-field--urgent"><span class="yg-email-label">SUBJECT</span> URGENT — Kim Soomi: Formal Request for Review</div>
+                  <div class="yg-email-field"><span class="yg-email-label">DATE</span> February 3, 2020 &nbsp;·&nbsp; 2:58 AM</div>
+                </div>
+                <div class="yg-email-body">
+                  <p>Mr. Yang,</p>
+                  <p>I am writing to formally request an urgent review of Kim Soomi's access to iKON's members — specifically to Kim Jinhwan.</p>
+                  <p>I recognize that my concerns last June were not actioned. I accepted that at the time. I can no longer do so. What I am observing now is materially different from a management concern about optics.</p>
+                  <p>Kim Jinhwan is no longer responding to my direction. He does not return my communications promptly. He has declined or circumvented scheduled briefings on three separate occasions in the past month. When I address this with him directly, he is dismissive in a way that is entirely inconsistent with his conduct prior to the collaboration period. I have managed Kim Jinhwan for six years. I know who he is. This is not him.</p>
+                  <p>I believe Kim Soomi has, whether deliberately or otherwise, <strong>compromised his relationship with this management team</strong>. I do not use that word lightly. I have spent eight months observing this and I am confident in what I am seeing.</p>
+                  <p>I am also writing to share something I have not previously disclosed. I have conducted my own research into Kim Soomi's background — her departure from New York in 2013, the circumstances under which she signed to YG, and certain individuals she remains associated with outside of the entertainment industry. What I have found has led me to believe that she is not who the public understands her to be. The people surrounding her are not safe. I believe there is significant and credible risk to Kim Jinhwan personally, and to iKON's image as a whole, if this association continues.</p>
+                  <p>I am formally requesting that management review her access and consider whether the current arrangement is appropriate to continue. I will not act unilaterally. But I will also not stay silent.</p>
+                  <p>Respectfully and urgently,<br>
+                  <strong>Kang Jisoo</strong><br>
+                  Senior Artist Manager, iKON<br>
+                  YG Entertainment</p>
+                  <p style="font-size:11px;color:#555;margin-top:20px;padding-top:12px;border-top:1px solid #1e1e1e;">P.S. — I have retained copies of this correspondence.</p>
+                </div>
+              </div>
+
+            </div><!-- /yg-email-thread -->
+          </div><!-- /yg-email-modal -->
+        </div><!-- /yg-email-overlay -->
+
       </div>
     </div>
 
@@ -520,11 +848,11 @@
 
         <!-- Nav -->
         <nav class="ledger-nav">
-          <a>Business</a>
-          <a>Markets</a>
-          <a>Society</a>
-          <a>Obituaries</a>
-          <a>Archive</a>
+          <a href="#" onclick="ledgerNav(this,'business');return false;">Business</a>
+          <a href="#" onclick="ledgerNav(this,'markets');return false;">Markets</a>
+          <a href="#" onclick="ledgerNav(this,'society');return false;">Society &amp; Heritage</a>
+          <a href="#" onclick="ledgerNav(this,'obituaries');return false;">Obituaries</a>
+          <a href="#" onclick="ledgerNav(this,'archive');return false;">Archive</a>
         </nav>
 
         <!-- Featured story -->
@@ -944,6 +1272,100 @@
           </article>
 
         </div><!-- /ledger-archive -->
+
+        <!-- ══ SOCIETY & HERITAGE ══════════════════════════════════════════════ -->
+        <div class="ledger-society-section">
+
+          <div class="ledger-society-masthead">
+            <div class="ledger-society-rule"></div>
+            <div class="ledger-society-label">Society &amp; Heritage</div>
+            <div class="ledger-society-sub">An Archive of the Castle Community &nbsp;·&nbsp; 2009–2013</div>
+            <div class="ledger-society-rule"></div>
+          </div>
+
+          <!-- Article 1: Met Gala 2011 -->
+          <article class="ledger-society-article" id="ls-gala2011">
+            <div class="ledger-society-dateline">
+              <span class="ledger-society-date">June 12, 2011</span>
+              <span class="ledger-society-tag">Society</span>
+            </div>
+            <h2 class="ledger-society-headline">A Night at the Met: The Next Generation of Lee Industries.</h2>
+            <p class="ledger-society-byline">By Constance Whitmore, Society Editor</p>
+
+            <div class="ledger-society-lead-photo">
+              <img src="images/upper-east-side-ledger/solar-gala.jpg" alt="Solar Lee at the Metropolitan Museum Annual Benefit Gala, 2011">
+            </div>
+            <p class="ledger-society-caption">Solar Lee, 16, at the Metropolitan Museum of Art Annual Benefit Gala. June 2011. — Ledger Society Photograph</p>
+
+            <div class="ledger-society-body">
+              <div class="ledger-society-text">
+                <p>Solar Lee is sixteen years old, and she already knows how to stand still.</p>
+                <p>Not in the way that children are taught at cotillions — that performance of stillness that reads from twenty feet away as rehearsed. In the way that some people simply occupy a room differently than others. She entered the Metropolitan Museum's Great Hall on Friday evening alongside her parents, Jaesang and Solji Lee, and she did not look around. She looked forward. Her posture was a statement in itself.</p>
+                <p>The occasion was the annual benefit gala for the Museum's East Asian Art Wing, an event that has long served as one of the Castle community's most photographed evenings. Among the families in attendance — the Lees, the Moons, the Baes, the Chois, and the Jis, whose collective philanthropic contributions to the evening represent the largest single donor bloc for the fourth consecutive year — the next generation was conspicuously present. It was Solar Lee who drew the most eyes.</p>
+                <p>Impeccably turned out in a gown designed specifically for the occasion, Solar Lee spent the evening attending to her parents' guests with the ease of someone who has been doing this her entire life. Which, in the relevant ways, she has. Born to Jaesang Lee — Chairman of Lee Industries — and his wife Solji, a patron of the arts whose own elegance is well documented in these pages, Solar Lee has been oriented toward this world since before she could form the words to describe it.</p>
+                <p>The question of succession at Lee Industries has been a quiet subject among Castle investors for several years. And in that question, Solar Lee — eldest daughter, top of her class, impeccably molded in the family tradition — has placed herself, deliberately or not, squarely in the center of the frame.</p>
+                <p>Her mother Solji Lee was seen speaking quietly with her daughter between the first and second courses, one hand resting lightly on her arm. An unremarkable gesture. The sort that, in the context of an evening like this one, carries the full weight of what is expected.</p>
+              </div>
+              <div class="ledger-society-sidebar">
+                <div class="ledger-society-pull">
+                  <div class="ledger-society-pull-mark">"</div>
+                  <p class="ledger-society-pull-text">She is the future of the dynasty. She has always known that.</p>
+                  <div class="ledger-society-pull-attr">— A longtime family friend, speaking at the event</div>
+                </div>
+                <div class="ledger-society-photo">
+                  <img src="images/upper-east-side-ledger/solar-andhermother-gala-walking.jpg" alt="Solar Lee and Solji Lee arriving at the Metropolitan Museum Gala">
+                  <p class="ledger-society-photo-caption">Solar Lee with her mother, Solji Lee, arriving at the Metropolitan Museum. — Ledger Archive</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Article 2: Academic 2012 -->
+          <article class="ledger-society-article" id="ls-academic2012">
+            <div class="ledger-society-dateline">
+              <span class="ledger-society-date">May 8, 2012</span>
+              <span class="ledger-society-tag">Heritage &nbsp;·&nbsp; Education</span>
+            </div>
+            <h2 class="ledger-society-headline">Top of Her Class: Solar Lee and the Global Business Fast-Track.</h2>
+            <p class="ledger-society-byline">By Constance Whitmore, Society Editor</p>
+
+            <div class="ledger-society-body" style="margin-bottom:28px;">
+              <div class="ledger-society-text">
+                <p>There is a particular kind of résumé that forms in the Castle long before any child is old enough to fill one out themselves. It is built over years, carefully, the way a house is built — one deliberate addition at a time, each piece chosen to support the one that will eventually stand on top of it. By the time Solar Lee, seventeen, accepted her academic excellence award at the Northfield-Ashton Academic Invitational last week, her résumé had been under construction for most of her life.</p>
+                <p>Her placement in the East Coast Global Business Leadership Programme — an invitation-only preparatory track that draws its fifteen annual participants from a combined pool of applicants at five of the country's most selective pre-collegiate institutions — was confirmed in March. She is the youngest participant in the program's current cohort. She is, by multiple accounts, also the most prepared.</p>
+                <p>The Lee Industries Chairman was not in attendance at last week's ceremony, cited as attending to company matters abroad. Solji Lee was present, and was seen embracing her daughter after the award presentation with the composure that characterizes everything in the Lee family's public presentation. Solar Lee, photographed accepting her award, did not appear nervous. She appeared, as she generally does, ready.</p>
+                <p>The Global Business Leadership Programme involves an intensive curriculum spanning international finance, corporate governance, legal frameworks, and executive communication. Its alumni list includes names that now appear on the boards of several of New York's most prominent institutions. Solar Lee, who has reportedly maintained the highest academic average in her class for three consecutive semesters, is expected to attend the full summer cycle before beginning her final year of preparatory study.</p>
+                <p>The question of what comes next — after the Programme, after the preparatory years, after the careful accumulation of all this preparation — has a predictable answer among those who know the family. Lee Industries. The company whose name she carries, whether she chose to or not.</p>
+                <p style="font-style:italic;color:#6a5a3a;">"She has always known exactly what was expected of her," said one person close to the Lee family, offering what sounded like admiration and carried the weight of something quieter. "She has never once suggested otherwise."</p>
+              </div>
+              <div class="ledger-society-sidebar">
+                <div class="ledger-society-pull">
+                  <div class="ledger-society-pull-mark">"</div>
+                  <p class="ledger-society-pull-text">She doesn't just complete the work. She anticipates it. It is unusual, in a student her age, to observe that quality of discipline.</p>
+                  <div class="ledger-society-pull-attr">— Faculty, speaking on background</div>
+                </div>
+                <div class="ledger-society-photo">
+                  <img src="images/upper-east-side-ledger/solar-highschool-uniform-photoshoot.jpg" alt="Solar Lee, academic portrait 2012">
+                  <p class="ledger-society-photo-caption">Solar Lee, academic portrait. Spring 2012. — Ledger Archive</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Award photo full-width -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div>
+                <img src="images/upper-east-side-ledger/solar-receiving-academicexcellenceaward-2012.png" alt="Solar Lee receiving the Academic Excellence Award, Northfield-Ashton Invitational 2012" style="width:100%;display:block;object-fit:cover;">
+                <p class="ledger-society-caption" style="margin-top:6px;margin-bottom:0;">Solar Lee receiving the Academic Excellence Award, Northfield-Ashton Academic Invitational. May 2012.</p>
+              </div>
+              <div>
+                <img src="images/upper-east-side-ledger/solar-highschool-headshot.jpg" alt="Solar Lee, preparatory portrait 2012" style="width:100%;display:block;object-fit:cover;height:100%;max-height:340px;">
+                <p class="ledger-society-caption" style="margin-top:6px;margin-bottom:0;">Preparatory portrait, 2012. — Ledger Society Archive</p>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /ledger-society-section -->
+        <!-- ══════════════════════════════════════════════════════════════════ -->
 
         <!-- Footer -->
         <footer class="ledger-footer">
@@ -2248,6 +2670,9 @@
               </div>
               <div style="margin-top:20px;font-size:9px;color:#222;font-family:var(--mono);letter-spacing:1px;">NOTE: This service does not appear in public-facing company filings. Client confidentiality is absolute. Inquiries through standard channels will not be acknowledged.</div>
             </div>
+            <div style="margin-top:16px;text-align:right;">
+              <a href="#" onclick="openKimAssets();return false;" style="font-size:8px;color:#141414;font-family:var(--mono);letter-spacing:1px;text-decoration:none;" onmouseover="this.style.color='#2a2a2a'" onmouseout="this.style.color='#141414'">KCO / INTERNAL / UNIT-SW/K &nbsp;·&nbsp; PERSONNEL REGISTRY →</a>
+            </div>
           </div>
         </div>
         <div class="kim-footer"><span>© 2021 Kim Company Global.</span></div>
@@ -2349,6 +2774,129 @@
         </div>
       </div><!-- /kim-solar-overlay -->
 
+      <!-- PERSONNEL REGISTRY OVERLAY -->
+      <div class="kim-solar-overlay hidden" id="kim-assets-overlay">
+        <div class="kim-solar-files" style="width:820px;">
+          <button class="kim-solar-close" onclick="closeKimAssets()">✕</button>
+          <div class="kim-solar-header">// KIM COMPANY GLOBAL · INTERNAL PERSONNEL REGISTRY · UNIT: SW/K · CLASSIFICATION: EYES ONLY</div>
+          <div class="kim-solar-title">ASSET ACQUISITION REGISTRY — SUNWOO KIM UNIT</div>
+          <div style="font-size:10px;color:#333;font-family:var(--mono);letter-spacing:1px;margin-bottom:28px;line-height:1.9;">COMPILED BY: SIHYUK KIM, CEO &nbsp;·&nbsp; PERIOD COVERED: 2008–2011 &nbsp;·&nbsp; TOTAL ASSETS ACQUIRED: 6 &nbsp;·&nbsp; ACTIVE: 3 &nbsp;·&nbsp; DECEASED: 3<br>NOTE: Assets were recruited under Executive VP Kim Sunwoo's direct authority per Directive KCO-2008-07. All subjects were identified as high-loyalty, high-capability candidates from unstable domestic circumstances. This registry is not filed with any external authority.</div>
+
+          <!-- ASSET 01 — SANGYEON -->
+          <div class="kim-file-block">
+            <div class="kim-file-header">
+              <div class="kim-file-icon">01</div>
+              <div style="flex:1;">
+                <div class="kim-file-name">KIM, SANGYEON &nbsp;·&nbsp; ASSET-01</div>
+                <span class="kim-file-meta">DATE ACQUIRED: 2008 &nbsp;·&nbsp; METHOD: DIRECT APPROACH &nbsp;·&nbsp; RECRUITED BY: SW/K (EVP)</span>
+              </div>
+              <div class="kim-asset-status kim-asset-status--active">● ACTIVE</div>
+            </div>
+            <div class="kim-file-body">
+              <div class="kim-asset-meta">
+                <div><span class="kim-asset-label">CIRCUMSTANCES</span> Subject identified via passive intelligence in Castle-adjacent residential district. Living conditions assessed as sub-functional. Active threat from parental unit documented — physical harm observed. Loyalty potential: high. No existing institutional ties. Asset was in possession of no resources, no network, and no viable exit from current conditions. Acquisition offer extended by EVP directly. Accepted without negotiation.</div>
+                <div style="margin-top:12px;"><span class="kim-asset-label">CAPABILITIES ASSIGNED</span> Combat and physical conditioning (EVP-direct training). Remote enrollment: network penetration, system architecture, communications infrastructure. Current role: primary digital intelligence. Assessment: <em>irreplaceable.</em></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASSET 02 — HYUNJAE -->
+          <div class="kim-file-block" style="border-color:#1a0000;">
+            <div class="kim-file-header">
+              <div class="kim-file-icon" style="background:#1a0000;">02</div>
+              <div style="flex:1;">
+                <div class="kim-file-name">JANG, HYUNJAE &nbsp;·&nbsp; ASSET-02</div>
+                <span class="kim-file-meta">DATE ACQUIRED: 2009 &nbsp;·&nbsp; METHOD: ARMED EXTRACTION &nbsp;·&nbsp; RECRUITED BY: SW/K (EVP)</span>
+              </div>
+              <div class="kim-asset-status kim-asset-status--deceased">● DECEASED &nbsp;·&nbsp; DEC 2021</div>
+            </div>
+            <div class="kim-file-body">
+              <div class="kim-asset-meta">
+                <div><span class="kim-asset-label">CIRCUMSTANCES</span> Subject encountered during routine transit through lower district. Multiple aggressors — debt collection in dispute over product authenticity. Subject was not combatant; was attempting independent financial extraction from primary household (father: non-functional due to alcohol dependency). EVP intervened with armed neutralization of aggressors. Subject was extracted at point of incident. Acquisition offer accepted same evening.</div>
+                <div style="margin-top:12px;"><span class="kim-asset-label">CAPABILITIES ASSIGNED</span> Field operations. Mobile reconnaissance. Physical engagement. Was considered one of the unit's most reliable field assets prior to termination.</div>
+                <div style="margin-top:12px;font-size:9px;color:#4a0000;font-family:var(--mono);letter-spacing:1px;">TERMINATION NOTE: KIA during December 2021 operations. Cause classified. No public record created per standard protocol.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASSET 03 — HYUNJOON -->
+          <div class="kim-file-block">
+            <div class="kim-file-header">
+              <div class="kim-file-icon">03</div>
+              <div style="flex:1;">
+                <div class="kim-file-name">SONG, HYUNJOON &nbsp;·&nbsp; ASSET-03</div>
+                <span class="kim-file-meta">DATE ACQUIRED: 2010 &nbsp;·&nbsp; METHOD: VOLUNTARY CONTACT &nbsp;·&nbsp; RECRUITED BY: SW/K (EVP)</span>
+              </div>
+              <div class="kim-asset-status kim-asset-status--active">● ACTIVE</div>
+            </div>
+            <div class="kim-file-body">
+              <div class="kim-asset-meta">
+                <div><span class="kim-asset-label">CIRCUMSTANCES</span> Subject self-initiated contact with EVP during transit through condemned industrial zone. Inquired about operational involvement unprompted. Demonstrated possession of bladed weapon of above-average quality. Acknowledged absence of formal training without apparent concern. Volatility profile reviewed: within acceptable operational parameters. Socialization index flagged as high — significant morale value to unit cohesion. Acquisition processed same day.</div>
+                <div style="margin-top:12px;"><span class="kim-asset-label">CAPABILITIES ASSIGNED</span> Close-quarters combat. Bladed weapon proficiency (formalized post-acquisition). Team integration. Asset considered essential to unit morale and sustained deployment capacity.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASSET 04 — ERIC -->
+          <div class="kim-file-block">
+            <div class="kim-file-header">
+              <div class="kim-file-icon">04</div>
+              <div style="flex:1;">
+                <div class="kim-file-name">SIM, ERIC &nbsp;·&nbsp; ASSET-04</div>
+                <span class="kim-file-meta">DATE ACQUIRED: 2010 &nbsp;·&nbsp; METHOD: DIRECT APPROACH (CONCURRENT WITH ASSET-03) &nbsp;·&nbsp; RECRUITED BY: SW/K (EVP)</span>
+              </div>
+              <div class="kim-asset-status kim-asset-status--active">● ACTIVE</div>
+            </div>
+            <div class="kim-file-body">
+              <div class="kim-asset-meta">
+                <div><span class="kim-asset-label">CIRCUMSTANCES</span> Subject located beneath bridge infrastructure in lower district during same transit as Asset-03 acquisition. No documented housing. No parental or institutional record on file. Subject presented initial resistance to approach — flagged as protective behavioral response consistent with long-term unsupported survival. EVP applied extended contact protocol. Offer accepted upon formal presentation of housing and resource guarantees. Fastest acquisition window on record: same evening as Asset-03 intake.</div>
+                <div style="margin-top:12px;"><span class="kim-asset-label">CAPABILITIES ASSIGNED</span> Agility and perimeter clearance. Improvised resource management. Field endurance. Noted for exceptional adaptability under variable field conditions.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASSET 05 — YOUNGHOON -->
+          <div class="kim-file-block" style="border-color:#1a0000;">
+            <div class="kim-file-header">
+              <div class="kim-file-icon" style="background:#1a0000;">05</div>
+              <div style="flex:1;">
+                <div class="kim-file-name">LEE, YOUNGHOON &nbsp;·&nbsp; ASSET-05</div>
+                <span class="kim-file-meta">DATE ACQUIRED: 2011 &nbsp;·&nbsp; METHOD: INTELLIGENCE-FLAGGED EXTRACTION &nbsp;·&nbsp; RECRUITED BY: SW/K (EVP)</span>
+              </div>
+              <div class="kim-asset-status kim-asset-status--deceased">● DECEASED &nbsp;·&nbsp; DEC 2021</div>
+            </div>
+            <div class="kim-file-body">
+              <div class="kim-asset-meta">
+                <div><span class="kim-asset-label">CIRCUMSTANCES</span> Subject flagged by existing unit intelligence following media reporting on documented institutional abuse at residential care facility. EVP conducted independent assessment: high-intelligence profile confirmed. Formal extraction authorized and carried out. Subject cooperative throughout intake. No resistance.</div>
+                <div style="margin-top:12px;"><span class="kim-asset-label">CAPABILITIES ASSIGNED</span> Strategic planning and threat analysis. Intelligence processing. Considered the unit's primary analytical asset prior to termination. Loss assessed as significant operational gap.</div>
+                <div style="margin-top:12px;font-size:9px;color:#4a0000;font-family:var(--mono);letter-spacing:1px;">TERMINATION NOTE: KIA during December 2021 operations. Cause classified. No public record created per standard protocol.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASSET 06 — HAKNYEON -->
+          <div class="kim-file-block" style="border-color:#1a0000;">
+            <div class="kim-file-header">
+              <div class="kim-file-icon" style="background:#1a0000;">06</div>
+              <div style="flex:1;">
+                <div class="kim-file-name">JO, HAKNYEON &nbsp;·&nbsp; ASSET-06</div>
+                <span class="kim-file-meta">DATE ACQUIRED: 2011 &nbsp;·&nbsp; METHOD: ACTIVE EXTRACTION DURING PURSUIT &nbsp;·&nbsp; RECRUITED BY: SW/K (EVP)</span>
+              </div>
+              <div class="kim-asset-status kim-asset-status--deceased">● DECEASED &nbsp;·&nbsp; DEC 2021</div>
+            </div>
+            <div class="kim-file-body">
+              <div class="kim-asset-meta">
+                <div><span class="kim-asset-label">CIRCUMSTANCES</span> Subject encountered during live tactical operation in commercial district. At time of contact, subject was engaged in active armed exchange with law enforcement outside a fuel station. EVP executed vehicle extraction during live pursuit. Subject self-described his occupation as independent product distribution; confirmed it was his first documented law enforcement contact. Subject's own words upon extraction: <em>"First time I ever got caught."</em> Acquisition processed same day. No law enforcement follow-up documented.</div>
+                <div style="margin-top:12px;"><span class="kim-asset-label">CAPABILITIES ASSIGNED</span> Ballistic engagement. High-pressure field decision-making. Escalation and active threat response. Considered the unit's primary offensive asset.</div>
+                <div style="margin-top:12px;font-size:9px;color:#4a0000;font-family:var(--mono);letter-spacing:1px;">TERMINATION NOTE: KIA during December 2021 operations. Cause classified. No public record created per standard protocol.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="font-size:8px;color:#1a1a1a;font-family:var(--mono);letter-spacing:1px;margin-top:8px;line-height:1.8;">KCO/INTERNAL/UNIT-SW/K/REGISTRY · ALL INFORMATION CONTAINED HEREIN IS THE EXCLUSIVE PROPERTY OF KIM COMPANY GLOBAL · UNAUTHORIZED ACCESS OR DISTRIBUTION IS SUBJECT TO RESOLUTION AT CEO DISCRETION · DO NOT PRINT · DO NOT DISTRIBUTE</div>
+        </div>
+      </div><!-- /kim-assets-overlay -->
+
     </div><!-- /kim-site -->
   </div><!-- /site-frame-kimco -->
 
@@ -2385,7 +2933,7 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="data.js"></script>
+  <script src="data.js?v=cleanup-20260612b"></script>
   <script>
     const TIMELINE_DATA = [
       { id:"r05a", year:2005, era:"recherche", identity:"solar", mood:"origin", title:"First Meeting", ref:null,
@@ -2466,7 +3014,7 @@
         desc:"Jungkook gets tickets to Jeju and gives them to Solar. Someone reminds her that Jeju is Jinhwan's hometown — his sister owns a cafe there. She goes to find her. His sister says he came home for a while, then disappeared. He assumed he went back to Seoul. Then a gift arrives with a note in handwriting that is not quite Jinhwan's." },
     ];
   </script>
-  <script src="app.js"></script>
+  <script src="app.js?v=cleanup-20260612b"></script>
 
   <!-- Web Relationship Popup -->
   <div id="web-popup-backdrop" class="web-popup-backdrop hidden"
@@ -2559,11 +3107,77 @@
   <section class="section" id="section-vault">
     <div class="vault-section">
 
-      <!-- Header -->
-      <div class="vault-header">
-        <div class="vault-title">THE VAULT</div>
-        <div class="vault-subtitle">Kim Soomi &nbsp;·&nbsp; Studio Archive &nbsp;·&nbsp; Private</div>
-      </div>
+      <!-- ═══════════════════════════════════════════
+           VAULT DESK SCENE — default landing view
+           ═══════════════════════════════════════════ -->
+      <div id="vault-desk-scene" class="vault-desk-scene">
+        <div class="vault-header">
+          <div class="vault-title">THE VAULT</div>
+          <div class="vault-subtitle">Kim Soomi &nbsp;·&nbsp; Private &nbsp;·&nbsp; Do Not Touch</div>
+        </div>
+        <div class="vault-desk-surface">
+
+          <!-- Notebook -->
+          <div class="vault-desk-item vdi--notebook" onclick="openVaultItem('notebook')" title="Song Notebook">
+            <div class="vdi-notebook">
+              <div class="vdi-notebook-title">MUSIC</div>
+              <div class="vdi-notebook-sub">private</div>
+            </div>
+            <span class="vdi-label">notebook</span>
+          </div>
+
+          <!-- Phone -->
+          <div class="vault-desk-item vdi--phone" onclick="openVaultItem('phone')" title="Her Phone">
+            <div class="vdi-phone">
+              <div class="vdi-phone-notch"></div>
+              <div class="vdi-phone-screen">
+                <div class="vdi-phone-app-name">Messages</div>
+                <div class="vdi-phone-badge">4</div>
+              </div>
+            </div>
+            <span class="vdi-label">her phone</span>
+          </div>
+
+          <!-- Promise Rings -->
+          <div class="vault-desk-item vdi--rings" onclick="openVaultItem('rings')" title="Promise Rings">
+            <div class="vdi-rings">
+              <div class="vdi-ring vdi-ring--1"></div>
+              <div class="vdi-ring vdi-ring--2"></div>
+            </div>
+            <span class="vdi-label">promise rings</span>
+          </div>
+
+          <!-- Jinhwan's gifts -->
+          <div class="vault-desk-item vdi--gifts" onclick="openVaultItem('gifts')" title="From Jinani ♡">
+            <div class="vdi-polaroids">
+              <div class="vdi-pol vdi-pol--c"></div>
+              <div class="vdi-pol vdi-pol--b"></div>
+              <div class="vdi-pol vdi-pol--a">
+                <div class="vdi-pol-img"></div>
+                <div class="vdi-pol-cap">4AM ♡</div>
+              </div>
+            </div>
+            <span class="vdi-label">from jinani ♡</span>
+          </div>
+
+          <!-- Engagement ring -->
+          <div class="vault-desk-item vdi--engring" onclick="openVaultItem('engring')" title="The Ring">
+            <div class="vdi-engring"></div>
+            <span class="vdi-label">the ring</span>
+          </div>
+
+        </div><!-- /vault-desk-surface -->
+      </div><!-- /vault-desk-scene -->
+
+      <!-- ═══════════════════════════════════════════════
+           NOTEBOOK OVERLAY — song archive
+           ═══════════════════════════════════════════════ -->
+      <div id="vault-overlay-notebook" class="vault-overlay" style="display:none">
+        <button class="vault-overlay-back" onclick="closeVaultItem()">← back to desk</button>
+        <div class="vault-header">
+          <div class="vault-title">THE VAULT</div>
+          <div class="vault-subtitle">Kim Soomi &nbsp;·&nbsp; Studio Archive &nbsp;·&nbsp; Private</div>
+        </div>
 
       <!-- Desk layout -->
       <div class="vault-desk">
@@ -3184,6 +3798,333 @@
           <button onclick="vaultSkip(1)" title="Next">⏭</button>
         </div>
       </div>
+
+      </div><!-- /vault-overlay-notebook -->
+
+      <!-- ═══════════════════════════════════════
+           PHONE OVERLAY — iMessage simulation
+           ═══════════════════════════════════════ -->
+      <div id="vault-overlay-phone" class="vault-overlay vault-overlay--phone" style="display:none">
+        <button class="vault-overlay-back" onclick="closeVaultItem()">← back to desk</button>
+        <div class="vault-phone-sim">
+          <div class="vps-device">
+            <div class="vps-statusbar"><span>9:41</span><span>▮▮▮ 100%</span></div>
+
+            <!-- Conversation List -->
+            <div id="vps-list" class="vps-list">
+              <div class="vps-list-header">Messages</div>
+              <div class="vps-convo" onclick="openPhoneConvo('jinhwan')">
+                <div class="vps-av vps-av--jinhwan">JH</div>
+                <div class="vps-convo-body">
+                  <div class="vps-convo-name">jinani 🐤</div>
+                  <div class="vps-convo-preview">i miss your face soomi</div>
+                </div>
+                <div class="vps-convo-time">yesterday</div>
+              </div>
+              <div class="vps-convo" onclick="openPhoneConvo('jungkook')">
+                <div class="vps-av vps-av--jungkook">JK</div>
+                <div class="vps-convo-body">
+                  <div class="vps-convo-name">kookie 🐇</div>
+                  <div class="vps-convo-preview">reply or i cut my hair</div>
+                </div>
+                <div class="vps-convo-time">2d ago</div>
+              </div>
+              <div class="vps-convo" onclick="openPhoneConvo('chanhee')">
+                <div class="vps-av vps-av--chanhee">CH</div>
+                <div class="vps-convo-body">
+                  <div class="vps-convo-name">heehee 💚</div>
+                  <div class="vps-convo-preview">ur still so fucking lucky</div>
+                </div>
+                <div class="vps-convo-time">old</div>
+              </div>
+              <div class="vps-convo vps-convo--stalker" onclick="openPhoneConvo('stalker')">
+                <div class="vps-av vps-av--unknown">?</div>
+                <div class="vps-convo-body">
+                  <div class="vps-convo-name">Unknown Number <span class="vps-unread-badge">3</span></div>
+                  <div class="vps-convo-preview">Sweet Soomi-ah...</div>
+                </div>
+                <div class="vps-convo-time">several</div>
+              </div>
+            </div><!-- /vps-list -->
+
+            <!-- Chat: Jinhwan -->
+            <div id="vps-chat-jinhwan" class="vps-chat" style="display:none">
+              <div class="vps-chat-header">
+                <button class="vps-back-btn" onclick="closePhoneConvo()">‹ Messages</button>
+                <div class="vps-chat-name">jinani 🐤</div>
+              </div>
+              <div class="vps-messages">
+                <div class="vps-date-sep">summer 2021</div>
+                <div class="vps-msg vps-msg--them">how is everything? chanhee isn't upset with me, is he?</div>
+                <div class="vps-msg vps-msg--me">ofc not :) he just loves his baby</div>
+                <div class="vps-msg vps-msg--me">but i miss u</div>
+                <div class="vps-msg vps-msg--them">i miss you more, soo, but it's important for you to spend time with them before you have to leave</div>
+                <div class="vps-msg vps-msg--them">i know it'll be hard, but i'll be here with you every step of the way</div>
+                <div class="vps-msg vps-msg--me">aw, what did i do to deserve someone like kim jinhwan</div>
+                <div class="vps-msg vps-msg--them">you're you, that's enough</div>
+                <div class="vps-msg vps-msg--me">i love u</div>
+                <div class="vps-msg vps-msg--me">u cute fucker</div>
+                <div class="vps-msg vps-msg--them vps-msg--photo"><div class="vps-photo-ph">📷 jinani w/ guitar</div></div>
+                <div class="vps-msg vps-msg--them">i love you :) this is all I've been doing since you left</div>
+                <div class="vps-msg vps-msg--them">oh but yein's here too!</div>
+                <div class="vps-msg vps-msg--me">omg</div>
+                <div class="vps-msg vps-msg--them vps-msg--photo"><div class="vps-photo-ph">📷 yein & jinani</div></div>
+                <div class="vps-msg vps-msg--them">she has the same photogenic talent as you</div>
+                <div class="vps-msg vps-msg--me">AW HOW CUTE</div>
+                <div class="vps-msg vps-msg--me">BOTH OF YOU</div>
+                <div class="vps-msg vps-msg--them">no u &lt;3</div>
+                <div class="vps-msg vps-msg--them">i miss your face soomi</div>
+                <div class="vps-msg vps-msg--me">i can't do anything abt that sir</div>
+                <div class="vps-msg vps-msg--them">aw, you're mean</div>
+                <div class="vps-msg vps-msg--them">you'll pay for that later</div>
+                <div class="vps-msg vps-msg--me">hey!</div>
+                <div class="vps-msg vps-msg--me vps-msg--photo"><div class="vps-photo-ph">📷 selfie</div></div>
+                <div class="vps-msg vps-msg--me">here you ass</div>
+                <div class="vps-msg vps-msg--them">my baby</div>
+              </div>
+            </div><!-- /vps-chat-jinhwan -->
+
+            <!-- Chat: Jungkook -->
+            <div id="vps-chat-jungkook" class="vps-chat" style="display:none">
+              <div class="vps-chat-header">
+                <button class="vps-back-btn" onclick="closePhoneConvo()">‹ Messages</button>
+                <div class="vps-chat-name">kookie 🐇</div>
+              </div>
+              <div class="vps-messages">
+                <div class="vps-date-sep">2021 · after dance practice</div>
+                <div class="vps-msg vps-msg--them">mi</div>
+                <div class="vps-msg vps-msg--them">mi</div>
+                <div class="vps-msg vps-msg--them">mi</div>
+                <div class="vps-msg vps-msg--them">hey mi</div>
+                <div class="vps-msg vps-msg--them">hey how are u</div>
+                <div class="vps-msg vps-msg--them">i miss u</div>
+                <div class="vps-msg vps-msg--them">mi :(!</div>
+                <div class="vps-msg vps-msg--them">reply or i cut my hair</div>
+                <div class="vps-msg vps-msg--me">u wouldn't fucking DARE</div>
+                <div class="vps-msg vps-msg--me">dont fucking TOUCH IT JUNGKOOK</div>
+                <div class="vps-msg vps-msg--me">UNDERSTAND?</div>
+                <div class="vps-msg vps-msg--them">oh so now u wanna reply</div>
+                <div class="vps-msg vps-msg--them">i'll cut my hair if i want to :)</div>
+                <div class="vps-msg vps-msg--them">but ur lucky i don't</div>
+                <div class="vps-msg vps-msg--them">also i know you love it</div>
+                <div class="vps-msg vps-msg--me">shut up</div>
+                <div class="vps-msg vps-msg--me">i had dance practice</div>
+                <div class="vps-msg vps-msg--me">it was intense and required my utmost concentration</div>
+                <div class="vps-msg vps-msg--them">omg yes queen soomi cb in 6 days</div>
+                <div class="vps-msg vps-msg--me">jungkook</div>
+                <div class="vps-msg vps-msg--them">sorry</div>
+                <div class="vps-msg vps-msg--them">i love you</div>
+                <div class="vps-msg vps-msg--me">you make me suffer</div>
+                <div class="vps-msg vps-msg--them">and you love it :)</div>
+                <div class="vps-msg vps-msg--me">yeah bc ur so</div>
+                <div class="vps-msg vps-msg--me">nvm</div>
+                <div class="vps-msg vps-msg--me">shut up</div>
+                <div class="vps-msg vps-msg--them">it's ok i already know mi</div>
+                <div class="vps-msg vps-msg--them">so you've been okay?</div>
+              </div>
+            </div><!-- /vps-chat-jungkook -->
+
+            <!-- Chat: Chanhee -->
+            <div id="vps-chat-chanhee" class="vps-chat" style="display:none">
+              <div class="vps-chat-header">
+                <button class="vps-back-btn" onclick="closePhoneConvo()">‹ Messages</button>
+                <div class="vps-chat-name">heehee 💚</div>
+              </div>
+              <div class="vps-messages">
+                <div class="vps-date-sep">the gang fight · teenage years</div>
+                <div class="vps-msg vps-msg--them">i KNOW you are not at sunwoos right now where there is a LITERAL gang fight i can see from here</div>
+                <div class="vps-msg vps-msg--them">if i fkin see u SO HELP ME GOD SOLAR LEE</div>
+                <div class="vps-msg vps-msg--them">i will BE VERY ANGRY</div>
+                <div class="vps-msg vps-msg--them">SOLAR FUCKING LEE TURN THE FUCK AROUND RIGHT NOW AND GO HOME</div>
+                <div class="vps-msg vps-msg--them">OHMYGOD i know you're dumb but ur NOT THIS DUMB</div>
+                <div class="vps-msg vps-msg--them">LITERALLY no man is worth DYING OVER</div>
+                <div class="vps-date-sep">several hours later</div>
+                <div class="vps-msg vps-msg--them">bitch what the fuck??? u ghost me for all these hours after i WATCH ur ass ignore my texts and go into a LITERAL GANG FIGHT</div>
+                <div class="vps-msg vps-msg--them">u are LUCKY UR EVEN ALIVE u stupid BITCH</div>
+                <div class="vps-msg vps-msg--them">god i fucking hate u all u do is worry me</div>
+                <div class="vps-msg vps-msg--them">if this is what having kids feels like i dont fucking want them</div>
+                <div class="vps-msg vps-msg--me">im sorry! i was worried about sunwoo</div>
+                <div class="vps-msg vps-msg--me">i couldn't let anything happen to him</div>
+                <div class="vps-msg vps-msg--them">solar he is A FUCKING GANG BOSS u dont have to worry about him he should worry about U</div>
+                <div class="vps-msg vps-msg--me">i know but it goes both ways!</div>
+                <div class="vps-msg vps-msg--me">im perfectly fine, hee, i actually DID save sunwoos life</div>
+                <div class="vps-msg vps-msg--them">i dont even want to fucking know even tho i already do</div>
+                <div class="vps-msg vps-msg--them">solar... u cant be doing all this sht for sunwoo</div>
+                <div class="vps-msg vps-msg--them">srsly its not ok</div>
+                <div class="vps-msg vps-msg--them">the shit he does is not normal, u cant become accustomed to that</div>
+                <div class="vps-msg vps-msg--them">and u KNOW i love u but i cant keep covering for u and helping u lie to ur parents</div>
+                <div class="vps-msg vps-msg--me">okok i get it</div>
+                <div class="vps-msg vps-msg--me">ill stop staying over at his house tho, this is the last time i need u to cover for me, promiseee</div>
+                <div class="vps-msg vps-msg--them">ugh ok fine</div>
+                <div class="vps-msg vps-msg--them">ur still so fucking lucky</div>
+                <div class="vps-msg vps-msg--me">love u best friend</div>
+              </div>
+            </div><!-- /vps-chat-chanhee -->
+
+            <!-- Chat: Unknown Number (stalker) -->
+            <div id="vps-chat-stalker" class="vps-chat vps-chat--stalker" style="display:none">
+              <div class="vps-chat-header vps-chat-header--stalker">
+                <button class="vps-back-btn vps-back-btn--stalker" onclick="closePhoneConvo()">‹ Messages</button>
+                <div class="vps-chat-name">Unknown Number</div>
+              </div>
+              <div class="vps-messages">
+                <div class="vps-date-sep vps-date-sep--stalker">first contact</div>
+                <div class="vps-msg vps-msg--stalker">Sweet Soomi-ah, I didn't think you would be a two-timer, looks like you're dirtier than I thought.</div>
+                <div class="vps-msg vps-msg--stalker">So, you do like to play, huh? Good to know. I hope you're in for a real dirty game then.</div>
+                <div class="vps-date-sep vps-date-sep--stalker">later</div>
+                <div class="vps-msg vps-msg--stalker vps-msg--photo"><div class="vps-photo-ph vps-photo-ph--dark">📷 [image attached]</div></div>
+                <div class="vps-msg vps-msg--stalker">You're so cute when you sleep, but I think you'd be even cuter dead.</div>
+                <div class="vps-date-sep vps-date-sep--stalker">new year's holiday</div>
+                <div class="vps-msg vps-msg--stalker">I love giving you surprises, Soomi. I know you'll really love this one.</div>
+                <div class="vps-msg vps-msg--me">What surprise might you be talking about?</div>
+                <div class="vps-msg vps-msg--me">Did you get me some candy?</div>
+                <div class="vps-msg vps-msg--stalker">Ah, the funny Soomi we all know and love. It's sweet you have the audacity to make jokes when I have everything you've been trying to hide at my will.</div>
+                <div class="vps-msg vps-msg--stalker">Even then, I feel like there's something more. You really are a tunnel of secrets, Kim Soomi.</div>
+                <div class="vps-msg vps-msg--stalker">Don't worry, I'm going to keep digging. I'll find everything about you, and I'll make sure the entire world knows what piece of shit you are.</div>
+                <div class="vps-msg vps-msg--me">All you do is talk but you haven't done anything. Sneaking in my apartment and watching me sleep, stabbing a note into my door, and hurting Jungkook. Why would you do that? I thought he was the reason you hate me but yet I'm not even with him anymore.</div>
+                <div class="vps-msg vps-msg--me">And I have nothing else I'm hiding. I'm an honest person.</div>
+                <div class="vps-msg vps-msg--stalker">Oh Soomi, I don't care about Jungkook. I tried to get him away from you with those threats for his benefit, because no one deserves to be under your ridiculing spell. This is about you, and how horrible you are.</div>
+                <div class="vps-msg vps-msg--stalker">I really do wonder what else you're hiding other than the fact you're two-timing, all behind your company's back, a honest person my ass.</div>
+                <div class="vps-msg vps-msg--stalker">You might want to hurry though, your surprise is waiting, and I think they might need medical attention.</div>
+                <div class="vps-date-sep vps-date-sep--stalker">kcon · new year's</div>
+                <div class="vps-msg vps-msg--stalker">KCON sounds fun, see you all there</div>
+                <div class="vps-msg vps-msg--stalker">Especially you, Soomi, hope you're ready for a real New Years bomb:)</div>
+                <div class="vps-date-sep vps-date-sep--stalker">christmas</div>
+                <div class="vps-msg vps-msg--stalker">Happy holidays, Soomi-ah.</div>
+              </div>
+            </div><!-- /vps-chat-stalker -->
+
+          </div><!-- /vps-device -->
+        </div><!-- /vault-phone-sim -->
+      </div><!-- /vault-overlay-phone -->
+
+      <!-- ═══════════════════════
+           RINGS OVERLAY
+           ═══════════════════════ -->
+      <div id="vault-overlay-rings" class="vault-overlay vault-overlay--center" style="display:none">
+        <button class="vault-overlay-back" onclick="closeVaultItem()">← back to desk</button>
+        <div class="vault-rings-display">
+          <div class="vault-header" style="border-bottom:none;margin-bottom:8px;">
+            <div class="vault-title" style="font-size:24px;letter-spacing:4px;">PROMISE RINGS</div>
+            <div class="vault-subtitle">Kim Sunwoo &amp; Solar Lee &nbsp;·&nbsp; teenage years</div>
+          </div>
+          <div class="vrd-rings-row">
+            <div class="vrd-ring-item">
+              <div class="vrd-ring vrd-ring--hers"></div>
+              <div class="vrd-ring-label">hers</div>
+            </div>
+            <div class="vrd-divider">·</div>
+            <div class="vrd-ring-item">
+              <div class="vrd-ring vrd-ring--his"></div>
+              <div class="vrd-ring-label">his &nbsp;<span class="vrd-blood-note">blood on the band</span></div>
+            </div>
+          </div>
+          <div class="vrd-desc">
+            gold. real. small diamonds surrounding a larger diamond in the center —<br>a design traced around them, placing the stones in a small cocoon of gold.
+          </div>
+          <div class="vrd-quote">
+            "it's you and me forever, Sunwoo"
+            <div class="vrd-quote-attr">— Solar Lee</div>
+          </div>
+        </div>
+      </div><!-- /vault-overlay-rings -->
+
+      <!-- ═══════════════════════
+           GIFTS OVERLAY
+           ═══════════════════════ -->
+      <div id="vault-overlay-gifts" class="vault-overlay" style="display:none">
+        <button class="vault-overlay-back" onclick="closeVaultItem()">← back to desk</button>
+        <div class="vault-gifts-section">
+          <div class="vault-header" style="border-bottom:none;margin-bottom:8px;">
+            <div class="vault-title" style="font-size:24px;letter-spacing:4px;">FROM JINANI ♡</div>
+            <div class="vault-subtitle">birthday gifts &nbsp;·&nbsp; chapter 141 &nbsp;·&nbsp; private</div>
+          </div>
+          <div class="vgf-grid">
+
+            <!-- Item 1: Polaroids -->
+            <div class="vgf-item">
+              <div class="vgf-visual">
+                <div class="vgf-pol-stack">
+                  <div class="vgf-pol vgf-pol--c"></div>
+                  <div class="vgf-pol vgf-pol--b"></div>
+                  <div class="vgf-pol vgf-pol--a">
+                    <div class="vgf-pol-img"></div>
+                    <div class="vgf-pol-text">4AM ♡</div>
+                  </div>
+                </div>
+              </div>
+              <div class="vgf-item-title">POLAROIDS</div>
+              <div class="vgf-item-desc">From the night of iKON's 4AM road trip — the other boys were drunk celebrating after a win. Jinhwan had taken her along. "You'll always have these. You were there."</div>
+            </div>
+
+            <!-- Item 2: Bling Bling poster -->
+            <div class="vgf-item">
+              <div class="vgf-visual">
+                <div class="vgf-poster">
+                  <div class="vgf-poster-title">iKON</div>
+                  <div class="vgf-poster-sub">BLING BLING</div>
+                  <div class="vgf-poster-year">2019</div>
+                </div>
+              </div>
+              <div class="vgf-item-title">BLING BLING POSTER</div>
+              <div class="vgf-item-desc">iKON's "Bling Bling" promotion poster — from her hardest times after the scandal. "I wanted you to remember we were there, even when you couldn't be."</div>
+            </div>
+
+            <!-- Item 3: CD -->
+            <div class="vgf-item">
+              <div class="vgf-visual">
+                <div class="vgf-cd">
+                  <div class="vgf-cd-hole"></div>
+                  <div class="vgf-cd-label">Flower<br><span>for soo ♡</span></div>
+                </div>
+              </div>
+              <div class="vgf-item-title">CD — "FLOWER"</div>
+              <div class="vgf-item-desc"><em>"Happy birthday, Soo. This is something I wrote special for you... I love you, Soo~ Jinani"</em> — handwritten on the case. A video of Jinhwan alone in the studio with his guitar, performing "Flower" which he wrote for her.</div>
+            </div>
+
+            <!-- Item 4: Necklace -->
+            <div class="vgf-item">
+              <div class="vgf-visual">
+                <div class="vgf-necklace">
+                  <div class="vgf-chain"></div>
+                  <div class="vgf-pendant">
+                    <span class="vgf-engraving">KJH+KSM</span>
+                  </div>
+                </div>
+              </div>
+              <div class="vgf-item-title">SCORPION GRASS NECKLACE</div>
+              <div class="vgf-item-desc">A scorpion grass flower (forget-me-not) — baby blue petals, shimmering golden outline. Real gold. Engraved on the back: <em>KJH+KSM</em>.</div>
+            </div>
+
+          </div><!-- /vgf-grid -->
+        </div>
+      </div><!-- /vault-overlay-gifts -->
+
+      <!-- ═══════════════════════
+           ENGAGEMENT RING OVERLAY
+           ═══════════════════════ -->
+      <div id="vault-overlay-engring" class="vault-overlay vault-overlay--center" style="display:none">
+        <button class="vault-overlay-back" onclick="closeVaultItem()">← back to desk</button>
+        <div class="vault-engring-display">
+          <div class="vault-header" style="border-bottom:none;margin-bottom:8px;">
+            <div class="vault-title" style="font-size:24px;letter-spacing:4px;">THE RING</div>
+            <div class="vault-subtitle">Kim Soomi &amp; Jeon Jungkook &nbsp;·&nbsp; 2018</div>
+          </div>
+          <div class="verd-ring-wrap">
+            <div class="verd-ring"></div>
+          </div>
+          <div class="verd-desc">
+            gold band. large center diamond surrounded by smaller stones. she wore it under her stage glove during rehearsal the week before the scandal. the cameras spotted it when she was running.
+          </div>
+          <div class="verd-note">
+            she ripped it off in the crowd of reporters. never spoke about it publicly. the ring was never recovered.
+          </div>
+          <div class="verd-quote">
+            "I'd still marry you," he professes confidently, "in a heartbeat."
+            <div class="verd-quote-attr">— Jeon Jungkook</div>
+          </div>
+        </div>
+      </div><!-- /vault-overlay-engring -->
 
     </div><!-- /vault-section -->
   </section><!-- /section-vault -->
