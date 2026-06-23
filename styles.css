@@ -245,7 +245,7 @@ body {
   font-weight: 300;
   font-style: italic;
   letter-spacing: 0.5em;
-  color: rgba(160, 120, 220, 0.08);
+  color: rgba(200, 170, 255, 0.28);
   line-height: 1;
 }
 
@@ -253,7 +253,7 @@ body {
   font-size: 0.65rem;
   letter-spacing: 0.35em;
   text-transform: uppercase;
-  color: rgba(120, 90, 170, 0.2);
+  color: rgba(180, 150, 230, 0.5);
   margin-top: 10px;
 }
 
