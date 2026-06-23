@@ -317,21 +317,25 @@ body {
   width: 48px;
   height: 48px;
   border-radius: 13px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: border-color 0.2s, box-shadow 0.2s;
-  background: rgba(30, 18, 55, 0.85);
-  color: #a888d8;
+}
+
+.dock-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .dock-item:hover .dock-icon {
-  border-color: rgba(180, 140, 255, 0.2);
-  box-shadow: 0 4px 16px rgba(100, 50, 180, 0.25);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .dock-tooltip {
@@ -352,17 +356,9 @@ body {
   pointer-events: none;
 }
 
-/* Per-icon color tints */
-.dock-icon--characters { color: #b090e8; }
-.dock-icon--web        { color: #70a8d0; }
-.dock-icon--timeline   { color: #78c090; }
-.dock-icon--social     { color: #d09060; }
-.dock-icon--vault      { color: #c070e8; }
-.dock-icon--yg         { background: rgba(12, 12, 22, 0.9); color: #e8e8f0; }
-.dock-icon--ledger     { background: rgba(22, 16, 6, 0.9);  color: #c8a040; }
-.dock-icon--pulse      { background: rgba(28, 8, 8, 0.9);   color: #e06060; }
-.dock-icon--lee        { background: rgba(6, 14, 26, 0.9);  color: #7098c8; }
-.dock-icon--kimco      { background: rgba(6, 22, 14, 0.9);  color: #68b080; }
+/* Icons with light/invisible content need a dark background */
+.dock-icon--timeline { background: #1a1030; }
+.dock-icon--lee      { background: #0e0d14; }
 
 /* ─── RELATIONSHIP WEB ───────────────────────────────────────────────────────── */
 
