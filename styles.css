@@ -180,9 +180,8 @@ body {
   display: flex;
   flex-direction: column;
   background:
-    radial-gradient(ellipse at 65% 25%, rgba(90, 40, 150, 0.14) 0%, transparent 55%),
-    radial-gradient(ellipse at 20% 75%, rgba(50, 20, 100, 0.10) 0%, transparent 50%),
-    linear-gradient(160deg, #0e0919 0%, #080610 45%, #050408 100%);
+    linear-gradient(to bottom, rgba(5, 3, 10, 0.45) 0%, rgba(5, 3, 10, 0.25) 40%, rgba(5, 3, 10, 0.65) 100%),
+    url('images/wallpaper.jpg') center center / cover no-repeat;
   overflow: hidden;
   position: relative;
 }
