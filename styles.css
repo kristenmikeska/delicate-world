@@ -320,7 +320,7 @@ body {
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
   transition: border-color 0.2s, box-shadow 0.2s;
-  background: #fff;
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
